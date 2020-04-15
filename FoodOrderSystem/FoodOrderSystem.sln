@@ -11,6 +11,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FoodOrderSystem.DB", "FoodO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodOrderSystem.BL.Test", "FoodOrderSystem.BL.Test\FoodOrderSystem.BL.Test.csproj", "{4A20ED31-9E78-48E1-81A8-5DFC97A78347}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodOrderSystem.PL", "FoodOrderSystem.PL\FoodOrderSystem.PL.csproj", "{FEF5D744-483C-4FA3-A546-0FE1C604F996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodOrderSystem.PL.Test", "FoodOrderSystem.PL.Test\FoodOrderSystem.PL.Test.csproj", "{4B1EF412-5212-4E1A-A00E-0D160504038A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{4A20ED31-9E78-48E1-81A8-5DFC97A78347}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A20ED31-9E78-48E1-81A8-5DFC97A78347}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A20ED31-9E78-48E1-81A8-5DFC97A78347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEF5D744-483C-4FA3-A546-0FE1C604F996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEF5D744-483C-4FA3-A546-0FE1C604F996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEF5D744-483C-4FA3-A546-0FE1C604F996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEF5D744-483C-4FA3-A546-0FE1C604F996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B1EF412-5212-4E1A-A00E-0D160504038A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B1EF412-5212-4E1A-A00E-0D160504038A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B1EF412-5212-4E1A-A00E-0D160504038A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B1EF412-5212-4E1A-A00E-0D160504038A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
