@@ -63,4 +63,15 @@
     <Folder Include="StoredProcedures" />
     <Folder Include="Tables" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\MenuItem.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Tables\UserAddress.sql" />
+    <Build Include="Tables\UserPayment.sql" />
+    <Build Include="Tables\Order.sql" />
+    <Build Include="Tables\OrderItem.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="FoodOrderSystem.DB.refactorlog" />
+  </ItemGroup>
 </Project>

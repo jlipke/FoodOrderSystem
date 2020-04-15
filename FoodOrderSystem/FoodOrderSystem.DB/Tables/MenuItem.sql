@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[MenuItem]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [ItemName] VARCHAR(50) NULL, 
+    [Price] FLOAT NOT NULL
+)
