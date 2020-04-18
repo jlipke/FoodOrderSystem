@@ -66,12 +66,33 @@
   <ItemGroup>
     <Build Include="Tables\MenuItem.sql" />
     <Build Include="Tables\User.sql" />
-    <Build Include="Tables\UserAddress.sql" />
     <Build Include="Tables\UserPayment.sql" />
     <Build Include="Tables\Order.sql" />
     <Build Include="Tables\OrderItem.sql" />
+    <Build Include="ForeignKeys\UserAddress_UserId.sql" />
+    <Build Include="ForeignKeys\UserPayment_UserId.sql" />
+    <Build Include="ForeignKeys\Order_UserId.sql" />
+    <Build Include="ForeignKeys\Order_AddressId.sql" />
+    <Build Include="Tables\UserAddress.sql" />
+    <Build Include="ForeignKeys\Order_CardId.sql" />
+    <Build Include="ForeignKeys\OrderItem_MenuItemId.sql" />
+    <Build Include="ForeignKeys\OrderItem_OrderId.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="FoodOrderSystem.DB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Post-Deployment\DefaultData\MenuItems.sql" />
+    <None Include="Post-Deployment\DefaultData\Orders.sql" />
+    <None Include="Post-Deployment\DefaultData\OrderItems.sql" />
+    <None Include="Post-Deployment\DefaultData\Users.sql" />
+    <None Include="Post-Deployment\DefaultData\UserAddresses.sql" />
+    <None Include="Post-Deployment\DefaultData\UserPayments.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Post-Deployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Pre-Deployment\Script.PreDeployment.sql" />
   </ItemGroup>
 </Project>
