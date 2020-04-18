@@ -1,4 +1,4 @@
-﻿ALTER TABLE [dbo].[Order]
+﻿ALTER TABLE [dbo].[tblOrder]
 	ADD CONSTRAINT [Order_CardId]
 	FOREIGN KEY (PaymentId)
-	REFERENCES [UserPayment] (Id)
+	REFERENCES [tblUserPayment] (Id)

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[UserAddress]
+﻿CREATE TABLE [dbo].[tblUserAddress]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [UserId] UNIQUEIDENTIFIER NOT NULL, 

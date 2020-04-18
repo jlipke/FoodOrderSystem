@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[UserPayment]
+﻿CREATE TABLE [dbo].[tblUserPayment]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [UserId] UNIQUEIDENTIFIER NOT NULL, 

@@ -1,4 +1,4 @@
-﻿ALTER TABLE [dbo].[OrderItem]
+﻿ALTER TABLE [dbo].[tblOrderItem]
 	ADD CONSTRAINT [OrderItem_OrderId]
 	FOREIGN KEY (OrderId)
-	REFERENCES [Order] (Id)
+	REFERENCES [tblOrder] (Id)

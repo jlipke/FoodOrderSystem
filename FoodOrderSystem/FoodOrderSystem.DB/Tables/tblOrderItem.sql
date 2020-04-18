@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[OrderItem]
+﻿CREATE TABLE [dbo].[tblOrderItem]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [OrderId] UNIQUEIDENTIFIER NOT NULL, 
