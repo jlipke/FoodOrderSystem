@@ -6,7 +6,7 @@ using System.Linq;
 namespace FoodOrderSystem.PL.Test
 {
     [TestClass]
-    public class utUsers
+    public class utMenuItems
     {
         [TestMethod]
         public void RunAll()
@@ -20,8 +20,8 @@ namespace FoodOrderSystem.PL.Test
         {
             using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
-                int expected = 1;
-                var results = dc.tblUsers.ToList();
+                int expected = 2;
+                var results = dc.tblMenuItems.ToList();
                 int actual = results.Count;
 
                 Assert.AreEqual(expected, actual);
@@ -31,16 +31,13 @@ namespace FoodOrderSystem.PL.Test
         {
             using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
-                tblUser newrow = new tblUser();
+                tblMenuItem newrow = new tblMenuItem();
 
                 newrow.Id = Guid.NewGuid();
-                newrow.FirstName = "Allie";
-                newrow.LastName = "Lewandowski";
-                newrow.Email = "alewi@hotmail.com";
-                newrow.Phone = "9201234567";
-                newrow.Password = "P@SSW0RD";
+                newrow.ItemName = "Spaghetti";
+                newrow.Price = 15.99;
 
-                dc.tblUsers.Add(newrow);
+                dc.tblMenuItems.Add(newrow);
                 int results = dc.SaveChanges();
 
                 Assert.IsTrue(results != 0);
@@ -50,13 +47,12 @@ namespace FoodOrderSystem.PL.Test
         {
             using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
-                tblUser updatedrow = dc.tblUsers.Where(u => u.Email == "alewi@hotmail.com")
+                tblMenuItem updatedrow = dc.tblMenuItems.Where(mi => mi.ItemName == "Spaghetti")
                     .FirstOrDefault();
 
                 if (updatedrow != null)
                 {
-                    updatedrow.Password = "NewP@SSw0Rd";
-                    updatedrow.Phone = "9208881122";
+                    updatedrow.Price = 19.99;
 
                     int results = dc.SaveChanges();
 
@@ -68,12 +64,12 @@ namespace FoodOrderSystem.PL.Test
         {
             using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
-                tblUser deletedrow = dc.tblUsers.Where(u => u.Email == "alewi@hotmail.com")
+                tblMenuItem deletedrow = dc.tblMenuItems.Where(mi => mi.ItemName == "Spaghetti")
                     .FirstOrDefault();
 
                 if (deletedrow != null)
                 {
-                    dc.tblUsers.Remove(deletedrow);
+                    dc.tblMenuItems.Remove(deletedrow);
                     int results = dc.SaveChanges();
                     Assert.IsTrue(results != 0);
                 }
