@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7aa364cdb7de4ff7b45a4bf21e5afd24" Name="Diagram1">
+        <EntityTypeShape EntityType="FoodOrderSystem.DBModel.C__RefactorLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodOrderSystem.DBModel.tblMenuItem" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodOrderSystem.DBModel.tblOrder" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodOrderSystem.DBModel.tblOrderItem" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodOrderSystem.DBModel.tblUser" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodOrderSystem.DBModel.tblUserAddress" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodOrderSystem.DBModel.tblUserPayment" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="FoodOrderSystem.DBModel.OrderItem_MenuItemId" ManuallyRouted="false" />
+        <AssociationConnector Association="FoodOrderSystem.DBModel.Order_AddressId" ManuallyRouted="false" />
+        <AssociationConnector Association="FoodOrderSystem.DBModel.Order_CardId" ManuallyRouted="false" />
+        <AssociationConnector Association="FoodOrderSystem.DBModel.Order_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FoodOrderSystem.DBModel.OrderItem_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="FoodOrderSystem.DBModel.UserAddress_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FoodOrderSystem.DBModel.UserPayment_UserId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
