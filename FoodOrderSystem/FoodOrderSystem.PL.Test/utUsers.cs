@@ -46,6 +46,14 @@ namespace FoodOrderSystem.PL.Test
                 Assert.IsTrue(results != 0);
             }
         }
+        [TestMethod]
+        public void spCreateUserTest()
+        {
+            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+            {
+                dc.
+            }
+        }
         public void UpdateTest()
         {
             using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
