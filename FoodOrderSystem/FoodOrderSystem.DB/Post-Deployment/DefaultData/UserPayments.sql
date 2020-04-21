@@ -1,10 +1,10 @@
 ﻿BEGIN 
-	DECLARE @UserId UNIQUEIDENTIFIER;
+	DECLARE @PaymentUserId UNIQUEIDENTIFIER;
 
-	SELECT @UserId = Id FROM tblUser 
+	SELECT @PaymentUserId = Id FROM tblUser 
 	WHERE Email = 'lewandowski.william@gmail.com';
 
 	INSERT INTO [dbo].[tblUserPayment] (Id, UserId, CardHolderName, CardNumber, ExpirationDate, CVC)
 	VALUES 
-		(NEWID(), @UserId, 'William Lewandowski', '0000111122223333', '0122', '000')
+		(NEWID(), @PaymentUserId, 'William Lewandowski', '0000111122223333', '0122', '000')
 END

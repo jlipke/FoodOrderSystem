@@ -1,9 +1,9 @@
 ﻿BEGIN 
-	DECLARE @UserId UNIQUEIDENTIFIER;
+	DECLARE @OrderUserId UNIQUEIDENTIFIER;
 	DECLARE @AddressId UNIQUEIDENTIFIER;
 	DECLARE @PaymentId UNIQUEIDENTIFIER;
 
-	SELECT @UserId = Id FROM tblUser
+	SELECT @OrderUserId = Id FROM tblUser
 	WHERE Email = 'lewandowski.william@gmail.com';
 
 	SELECT @AddressId = Id FROM tblUserAddress
@@ -14,5 +14,5 @@
 
 	INSERT INTO [dbo].[tblOrder] (Id, UserId, AddressId, PaymentId, Date)
 	VALUES
-		(NEWID(), @UserId, @AddressId, @PaymentId, DATETIME())
+		(NEWID(), @OrderUserId, @AddressId, @PaymentId, GETDATE())
 END
