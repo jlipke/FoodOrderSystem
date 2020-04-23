@@ -49,10 +49,7 @@ namespace FoodOrderSystem.PL.Test
         [TestMethod]
         public void spCreateUserTest()
         {
-            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
-            {
-                dc.
-            }
+
         }
         public void UpdateTest()
         {

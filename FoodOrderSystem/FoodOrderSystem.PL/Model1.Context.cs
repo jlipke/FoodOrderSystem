@@ -12,6 +12,8 @@ namespace FoodOrderSystem.PL
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class FoodOrderSystemEntities : DbContext
     {
@@ -32,5 +34,30 @@ namespace FoodOrderSystem.PL
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblUserAddress> tblUserAddresses { get; set; }
         public virtual DbSet<tblUserPayment> tblUserPayments { get; set; }
+    
+        public virtual int spCreateUser(string firstName, string lastName, string email, string phone, string password)
+        {
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("Phone", phone) :
+                new ObjectParameter("Phone", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCreateUser", firstNameParameter, lastNameParameter, emailParameter, phoneParameter, passwordParameter);
+        }
     }
 }
