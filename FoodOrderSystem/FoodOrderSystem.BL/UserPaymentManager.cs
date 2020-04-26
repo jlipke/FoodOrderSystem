@@ -223,7 +223,7 @@ namespace FoodOrderSystem.BL
 
                     if (updatedrow != null)
                     {
-                        updatedrow.Id = Guid.NewGuid();
+                        
                         updatedrow.UserId = userPayment.UserId;
                         updatedrow.CardHolderName = userPayment.CardHolderName;
                         updatedrow.CardNumber = userPayment.CardNumber;
