@@ -213,7 +213,6 @@ namespace FoodOrderSystem.BL
 
                     if (updatedrow != null)
                     {
-                        updatedrow.Id = Guid.NewGuid();
                         updatedrow.UserId = userAddress.UserId;
                         updatedrow.Address = userAddress.Address;
                         updatedrow.City = userAddress.City;
