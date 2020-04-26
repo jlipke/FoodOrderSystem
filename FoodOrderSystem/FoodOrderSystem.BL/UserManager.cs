@@ -25,8 +25,11 @@ namespace FoodOrderSystem.BL
                         Email = p.Email,
                         Phone = p.Phone,
                         Password = p.Password,
+                        Addresses = UserAddressManager.LoadByUserId(p.Id),
+
                     }));
 
+                    
                     return results;
                 }
             }

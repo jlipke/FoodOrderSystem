@@ -72,26 +72,30 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static UserAddress LoadByUserId(Guid userid)
+        public static List<UserAddress> LoadByUserId(Guid userid)
         {
             try
             {
                 using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
-                    tblUserAddress UserAddressRow = dc.tblUserAddresses.FirstOrDefault(a => a.UserId == userid);
+                    tblUserPayment UserPaymentRow = dc.tblUserPayments.FirstOrDefault(a => a.Id == userid);
 
-                    if (UserAddressRow != null)
+                    if (UserPaymentRow != null)
                     {
-                        return new UserAddress
+                        List<UserAddress> results = new List<UserAddress>();
+                        dc.tblUserAddresses.ToList().ForEach(p => results.Add(new User
                         {
-                            Id = UserAddressRow.Id,
-                            UserId = UserAddressRow.UserId,
+
+                            Id = results,
+                            UserId = results.UserId,
                             Address = UserAddressRow.Address,
                             City = UserAddressRow.City,
                             State = UserAddressRow.State,
                             ZipCode = UserAddressRow.ZipCode
 
-                        };
+                        }));
+
+                        return results;
                     }
 
                     else
