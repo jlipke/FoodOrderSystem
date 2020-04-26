@@ -10,6 +10,48 @@ namespace FoodOrderSystem.BL
 {
     public static class OrderItemManager
     {
+        public static List<OrderItem> LoadByOrderId(Guid orderid)
+        {
+            try
+            {
+                if (orderid != null)
+                {
+                    using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                    {
+
+                        tblOrderItem tblorderItem = dc.tblOrderItems.FirstOrDefault(p => p.OrderId == orderid);
+
+                        if (tblorderItem != null)
+                        {
+                            List<OrderItem> orderItems = new List<OrderItem>();
+                            dc.tblOrderItems.ToList().ForEach(p => orderItems.Add(new OrderItem
+                            {
+                                Id = tblorderItem.Id,
+                                OrderId = tblorderItem.OrderId,
+                                MenuItemId = tblorderItem.MenuItemId
+                            }));
+
+                            return orderItems;
+
+                        }
+                        else
+                        {
+                            throw new Exception("Row was not found.");
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Exception("Please provide an id");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public static List<OrderItem> Load()
         {
             try
