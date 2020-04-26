@@ -77,7 +77,7 @@ namespace FoodOrderSystem.BL
                 using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
 
-                    // TODO: Hash the password when it is getting inserted
+                    // TODO: Hash the password when it is getting inserted. May hash it at the user level 
                     var result = dc.spCreateUser(user.FirstName, user.LastName, user.Email, user.Phone, user.Password);
 
                     dc.SaveChanges();
