@@ -72,32 +72,42 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static UserPayment LoadByUserId(Guid userid)
+        public static List<UserPayment> LoadByUserId(Guid userid)
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                if (userid != null)
                 {
-                    tblUserPayment UserPaymentRow = dc.tblUserPayments.FirstOrDefault(a => a.UserId == userid);
 
-                    if (UserPaymentRow != null)
+                    using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                     {
-                        return new UserPayment
+                        tblUserPayment UserPaymentRow = dc.tblUserPayments.FirstOrDefault(a => a.UserId == userid);
+
+                        if (UserPaymentRow != null)
                         {
-                            Id = UserPaymentRow.Id,
-                            UserId = UserPaymentRow.UserId,
-                            CardHolderName = UserPaymentRow.CardHolderName,
-                            CardNumber = UserPaymentRow.CardNumber,
-                            ExpirationDate = UserPaymentRow.ExpirationDate,
-                            CVC = UserPaymentRow.CVC
+                            List<UserPayment> payMethods = new List<UserPayment>();
+                            dc.tblUserPayments.ToList().ForEach(p => payMethods.Add(new UserPayment
+                            {
+                                Id = UserPaymentRow.Id,
+                                UserId = UserPaymentRow.UserId,
+                                CardHolderName = UserPaymentRow.CardHolderName,
+                                CardNumber = UserPaymentRow.CardNumber,
+                                ExpirationDate = UserPaymentRow.ExpirationDate,
+                                CVC = UserPaymentRow.CVC
+                            }));
 
-                        };
-                    }
+                            return payMethods;
+                        }
 
-                    else
-                    {
-                        throw new Exception("Row not found...");
+                        else
+                        {
+                            throw new Exception("Row not found...");
+                        }
                     }
+                }
+                else
+                {
+                    throw new Exception("Please provide an ID");
                 }
             }
             catch (Exception ex)
