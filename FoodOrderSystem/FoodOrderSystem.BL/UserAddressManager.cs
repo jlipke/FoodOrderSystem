@@ -78,24 +78,26 @@ namespace FoodOrderSystem.BL
             {
                 using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
-                    tblUserPayment UserPaymentRow = dc.tblUserPayments.FirstOrDefault(a => a.Id == userid);
+                    tblUser row = dc.tblUsers.FirstOrDefault(a => a.Id == userid);
 
-                    if (UserPaymentRow != null)
+                    if (row != null)
                     {
-                        List<UserAddress> results = new List<UserAddress>();
-                        dc.tblUserAddresses.ToList().ForEach(p => results.Add(new User
+                        List<UserAddress> addresses = new List<UserAddress>();
+                        var results = (from v in dc.tblUserAddresses
+                                       where v.UserId == row.Id
+                                       select v).ToList();
+
+                        results.ForEach(p => results.Add(new UserAddress
                         {
 
-                            Id = results,
-                            UserId = results.UserId,
-                            Address = UserAddressRow.Address,
-                            City = UserAddressRow.City,
-                            State = UserAddressRow.State,
-                            ZipCode = UserAddressRow.ZipCode
+                            Id = p.Id,
+                            UserId = p.UserId,
+                            Address = p.Address,
+                            City = p.City,
+                            State = p.State,
+                            ZipCode = p.ZipCode
 
                         }));
-
-                        return results;
                     }
 
                     else
