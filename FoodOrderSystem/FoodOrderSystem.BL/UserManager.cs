@@ -26,6 +26,7 @@ namespace FoodOrderSystem.BL
                         Phone = p.Phone,
                         Password = p.Password,
                         Addresses = UserAddressManager.LoadByUserId(p.Id),
+                        Payments = UserPaymentManager.LoadByUserId(p.Id)
 
                     }));
 
@@ -57,7 +58,9 @@ namespace FoodOrderSystem.BL
                             LastName = userRow.LastName,
                             Email = userRow.Email,
                             Phone = userRow.Phone,
-                            Password = userRow.Password
+                            Password = userRow.Password,
+                            Addresses = UserAddressManager.LoadByUserId(id),
+                            Payments = UserPaymentManager.LoadByUserId(id)
                         };
                     }
                     

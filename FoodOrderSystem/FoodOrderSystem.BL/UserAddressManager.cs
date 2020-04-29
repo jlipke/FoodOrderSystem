@@ -76,35 +76,29 @@ namespace FoodOrderSystem.BL
         {
             try
             {
+                List<UserAddress> addresses = new List<UserAddress>();
                 using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUser row = dc.tblUsers.FirstOrDefault(a => a.Id == userid);
 
-                    if (row != null)
+                    var results = (from v in dc.tblUserAddresses
+                                   where v.UserId == row.Id
+                                   select v).ToList();
+
+                    results.ForEach(p => addresses.Add(new UserAddress
                     {
-                        List<UserAddress> addresses = new List<UserAddress>();
-                        var results = (from v in dc.tblUserAddresses
-                                       where v.UserId == row.Id
-                                       select v).ToList();
 
-                        results.ForEach(p => results.Add(new UserAddress
-                        {
+                        Id = p.Id,
+                        UserId = p.UserId,
+                        Address = p.Address,
+                        City = p.City,
+                        State = p.State,
+                        ZipCode = p.ZipCode
 
-                            Id = p.Id,
-                            UserId = p.UserId,
-                            Address = p.Address,
-                            City = p.City,
-                            State = p.State,
-                            ZipCode = p.ZipCode
-
-                        }));
-                    }
-
-                    else
-                    {
-                        throw new Exception("Row not found...");
-                    }
+                    }));
                 }
+                return addresses;
+                  
             }
             catch (Exception ex)
             {
