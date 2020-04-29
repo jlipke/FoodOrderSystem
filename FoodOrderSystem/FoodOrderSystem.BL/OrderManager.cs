@@ -23,8 +23,10 @@ namespace FoodOrderSystem.BL
                         UserId = p.UserId,
                         AddressId = p.AddressId,
                         PaymentId = p.PaymentId,
-                        Date = p.Date
-
+                        Date = p.Date,
+                        OrderItems = OrderItemManager.LoadByOrderId(p.Id)
+                        // Add OrderItems
+                        
 
                     }));
 

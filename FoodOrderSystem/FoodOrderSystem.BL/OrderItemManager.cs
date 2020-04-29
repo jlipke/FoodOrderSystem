@@ -14,36 +14,28 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                if (orderid != null)
-                {
-                    using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                List<OrderItem> orderItems = new List<OrderItem>();
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                     {
 
-                        tblOrderItem tblorderItem = dc.tblOrderItems.FirstOrDefault(p => p.OrderId == orderid);
+                        tblOrder row = dc.tblOrders.FirstOrDefault(p => p.Id == orderid);
 
-                        if (tblorderItem != null)
-                        {
-                            List<OrderItem> orderItems = new List<OrderItem>();
-                            dc.tblOrderItems.ToList().ForEach(p => orderItems.Add(new OrderItem
+                    var results = (from v in dc.tblOrderItems
+                                   where v.OrderId == row.Id
+                                   select v).ToList();
+                        
+                            
+                            results.ForEach(p => orderItems.Add(new OrderItem
                             {
-                                Id = tblorderItem.Id,
-                                OrderId = tblorderItem.OrderId,
-                                MenuItemId = tblorderItem.MenuItemId
+                                Id = p.Id,
+                                OrderId = p.OrderId,
+                                MenuItemId = p.MenuItemId
                             }));
 
                             return orderItems;
-
-                        }
-                        else
-                        {
-                            throw new Exception("Row was not found.");
-                        }
+                    
                     }
-                }
-                else
-                {
-                    throw new Exception("Please provide an id");
-                }
+                
             }
             catch (Exception ex)
             {
