@@ -5,10 +5,21 @@
              x:Class="FoodOrderSystem.Xamarin.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Label Text="Test"></Label>
+        <ListView x:Name="ListMenuItems">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Id}"></Label>
+                            <Label Text="{Binding ItemName}"></Label>
+                            <Label Text="{Binding Price}"></Label>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 
 </ContentPage>
