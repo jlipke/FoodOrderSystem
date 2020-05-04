@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodOrderSystem.Xamarin.And
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodOrderSystem.Xamarin.iOS", "FoodOrderSystem.Xamarin\FoodOrderSystem.Xamarin.iOS\FoodOrderSystem.Xamarin.iOS.csproj", "{B3C72B45-2B89-48AE-89A2-53CDFE4C52EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodOrderSystem.Xamarin", "FoodOrderSystem.Xamarin\FoodOrderSystem.Xamarin\FoodOrderSystem.Xamarin.csproj", "{EE49C853-4D6A-420D-96C8-D4CBAEF0F19A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodOrderSystem.Xamarin", "FoodOrderSystem.Xamarin\FoodOrderSystem.Xamarin\FoodOrderSystem.Xamarin.csproj", "{EE49C853-4D6A-420D-96C8-D4CBAEF0F19A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

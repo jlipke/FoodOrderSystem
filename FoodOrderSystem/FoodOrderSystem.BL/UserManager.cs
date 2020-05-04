@@ -14,7 +14,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     List<User> results = new List<User>();
                     dc.tblUsers.ToList().ForEach(p => results.Add(new User
@@ -45,7 +45,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUser userRow = dc.tblUsers.FirstOrDefault(a => a.Id == id);
 
@@ -80,7 +80,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
 
                     // TODO: Hash the password when it is getting inserted. May hash it at the user level 
@@ -101,7 +101,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     var result = dc.spCreateUser(firstName, lastName, email, phone, password);
 
@@ -120,7 +120,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUser updatedrow = dc.tblUsers.FirstOrDefault(a => a.Id == id);
 
@@ -150,7 +150,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUser updatedrow = dc.tblUsers.FirstOrDefault(a => a.Id == user.Id);
 
@@ -180,7 +180,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUser deletedrow = dc.tblUsers.FirstOrDefault(a => a.Id == id);
 

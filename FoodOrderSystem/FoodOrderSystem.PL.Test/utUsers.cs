@@ -18,7 +18,7 @@ namespace FoodOrderSystem.PL.Test
         }
         public void LoadTest()
         {
-            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
             {
                 int expected = 1;
                 var results = dc.tblUsers.ToList();
@@ -29,7 +29,7 @@ namespace FoodOrderSystem.PL.Test
         }
         public void InsertTest()
         {
-            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
             {
                 tblUser newrow = new tblUser();
 
@@ -53,7 +53,7 @@ namespace FoodOrderSystem.PL.Test
         }
         public void UpdateTest()
         {
-            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
             {
                 tblUser updatedrow = dc.tblUsers.Where(u => u.Email == "alewi@hotmail.com")
                     .FirstOrDefault();
@@ -71,7 +71,7 @@ namespace FoodOrderSystem.PL.Test
         }
         public void DeleteTest()
         {
-            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
             {
                 tblUser deletedrow = dc.tblUsers.Where(u => u.Email == "alewi@hotmail.com")
                     .FirstOrDefault();

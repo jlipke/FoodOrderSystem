@@ -14,7 +14,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     List<UserAddress> results = new List<UserAddress>();
                     dc.tblUserAddresses.ToList().ForEach(p => results.Add(new UserAddress
@@ -42,7 +42,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUserAddress UserAddressRow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == id);
 
@@ -77,7 +77,7 @@ namespace FoodOrderSystem.BL
             try
             {
                 List<UserAddress> addresses = new List<UserAddress>();
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUser row = dc.tblUsers.FirstOrDefault(a => a.Id == userid);
 
@@ -110,7 +110,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblUserAddress newrow = new tblUserAddress();
@@ -143,7 +143,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblUserAddress newrow = new tblUserAddress();
@@ -176,7 +176,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUserAddress updatedrow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == id);
 
@@ -207,7 +207,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUserAddress updatedrow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == userAddress.Id);
 
@@ -238,7 +238,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
                     tblUserAddress deletedrow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == id);
 

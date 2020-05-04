@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FoodOrderSystem.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FoodOrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -69,6 +69,24 @@
           <Property Name="CardNumber" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="ExpirationDate" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="CVC" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="Order_AddressId">
           <End Role="tblUserAddress" Type="Self.tblUserAddress" Multiplicity="1" />
@@ -161,7 +179,7 @@
           <Parameter Name="Phone" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="FoodOrderSystemDBModelStoreContainer">
+        <EntityContainer Name="FoodOrderSystemModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMenuItem" EntityType="Self.tblMenuItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
@@ -169,6 +187,16 @@
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserAddress" EntityType="Self.tblUserAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserPayment" EntityType="Self.tblUserPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="Order_AddressId" Association="Self.Order_AddressId">
             <End Role="tblUserAddress" EntitySet="tblUserAddress" />
             <End Role="tblOrder" EntitySet="tblOrder" />
@@ -198,10 +226,11 @@
             <End Role="tblUserPayment" EntitySet="tblUserPayment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FoodOrderSystem.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="FoodOrderSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -280,6 +309,22 @@
           <Property Name="CVC" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblOrders" Relationship="Self.Order_CardId" FromRole="tblUserPayment" ToRole="tblOrder" />
           <NavigationProperty Name="tblUser" Relationship="Self.UserPayment_UserId" FromRole="tblUserPayment" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="OrderItem_MenuItemId">
           <End Role="tblMenuItem" Type="Self.tblMenuItem" Multiplicity="1" />
@@ -365,7 +410,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FoodOrderSystemEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AzureFoodOrderSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="tblMenuItems" EntityType="Self.tblMenuItem" />
           <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
@@ -373,6 +418,7 @@
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
           <EntitySet Name="tblUserAddresses" EntityType="Self.tblUserAddress" />
           <EntitySet Name="tblUserPayments" EntityType="Self.tblUserPayment" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <AssociationSet Name="OrderItem_MenuItemId" Association="Self.OrderItem_MenuItemId">
             <End Role="tblMenuItem" EntitySet="tblMenuItems" />
             <End Role="tblOrderItem" EntitySet="tblOrderItems" />
@@ -414,16 +460,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FoodOrderSystemDBModelStoreContainer" CdmEntityContainer="FoodOrderSystemEntities">
+        <EntityContainerMapping StorageEntityContainer="FoodOrderSystemModelStoreContainer" CdmEntityContainer="AzureFoodOrderSystemEntities">
           <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="FoodOrderSystem.DBModel.C__RefactorLog">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
                 <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMenuItems">
-            <EntityTypeMapping TypeName="FoodOrderSystem.DBModel.tblMenuItem">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblMenuItem">
               <MappingFragment StoreEntitySet="tblMenuItem">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
@@ -432,7 +478,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrders">
-            <EntityTypeMapping TypeName="FoodOrderSystem.DBModel.tblOrder">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblOrder">
               <MappingFragment StoreEntitySet="tblOrder">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -443,7 +489,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrderItems">
-            <EntityTypeMapping TypeName="FoodOrderSystem.DBModel.tblOrderItem">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblOrderItem">
               <MappingFragment StoreEntitySet="tblOrderItem">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -452,7 +498,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
-            <EntityTypeMapping TypeName="FoodOrderSystem.DBModel.tblUser">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -464,7 +510,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserAddresses">
-            <EntityTypeMapping TypeName="FoodOrderSystem.DBModel.tblUserAddress">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblUserAddress">
               <MappingFragment StoreEntitySet="tblUserAddress">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -476,7 +522,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserPayments">
-            <EntityTypeMapping TypeName="FoodOrderSystem.DBModel.tblUserPayment">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblUserPayment">
               <MappingFragment StoreEntitySet="tblUserPayment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -487,7 +533,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spCreateUser" FunctionName="FoodOrderSystem.DBModel.Store.spCreateUser" />
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCreateUser" FunctionName="FoodOrderSystemModel.Store.spCreateUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
