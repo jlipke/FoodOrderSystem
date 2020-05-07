@@ -1,15 +1,18 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FoodOrderSystem.Xamarin.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FoodOrderSystem.Xamarin
 {
     public partial class App : Application
     {
+
         public App()
         {
             InitializeComponent();
+
 
             MainPage = new MainPage();
         }

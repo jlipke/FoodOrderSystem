@@ -16,8 +16,16 @@ namespace FoodOrderSystem.Xamarin.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            try
+            {
+                base.OnCreate(savedInstanceState);
+            }
+            catch (Exception ex)
+            {
 
-            base.OnCreate(savedInstanceState);
+                throw ex;
+            }
+            
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
