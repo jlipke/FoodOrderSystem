@@ -60,24 +60,24 @@
             Text=""
             VerticalAlignment="Top" 
             Width="158"/>
-        <Button x:Name="btnAddPayment"
-            Content="Add"
+        <Button x:Name="btnInsert"
+            Content="Insert"
             HorizontalAlignment="Left" 
-            Margin="39,157,0,0"
+            Margin="36,157,0,0"
             VerticalAlignment="Top" 
-            Width="75"/>
-        <Button x:Name="btnUpdatePayment"
+            Width="75" Click="btnInsert_Click"/>
+        <Button x:Name="btnUpdate"
             Content="Update"
             HorizontalAlignment="Left" 
-            Margin="117,157,0,0"
+            Margin="114,157,0,0"
             VerticalAlignment="Top" 
-            Width="74"/>
-        <Button x:Name="btnDeletePayment"
+            Width="74" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete"
             Content="Delete"
             HorizontalAlignment="Left" 
-            Margin="194,157,0,0"
+            Margin="191,157,0,0"
             VerticalAlignment="Top" 
-            Width="75"/>
+            Width="75" Click="btnDelete_Click"/>
 
     </Grid>
 </Window>

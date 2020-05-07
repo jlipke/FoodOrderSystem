@@ -57,24 +57,24 @@
             Text=""
             VerticalAlignment="Top" 
             Width="158"/>
-        <Button x:Name="btnAddAddress"
-            Content="Add"
+        <Button x:Name="btnInsert"
+            Content="Insert"
             HorizontalAlignment="Left" 
             Margin="31,152,0,0"
             VerticalAlignment="Top" 
-            Width="74"/>
-        <Button x:Name="btnUpdateAddress"
+            Width="74" Click="btnInsert_Click"/>
+        <Button x:Name="btnUpdate"
             Content="Update"
             HorizontalAlignment="Left" 
             Margin="107,152,0,0"
             VerticalAlignment="Top" 
-            Width="76"/>
-        <Button x:Name="btnDeleteAddress"
+            Width="76" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete"
             Content="Delete"
             HorizontalAlignment="Left" 
             Margin="185,152,0,0"
             VerticalAlignment="Top" 
-            Width="76"/>
+            Width="76" Click="btnDelete_Click"/>
 
     </Grid>
 </Window>

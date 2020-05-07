@@ -25,32 +25,32 @@ namespace FoodOrderSystem.WPF
     {
         List<UserAddress> addresses;
         List<UserPayment> payments;
-        Guid userid;
+        User user;
         public AccountWindow()
         {
+
             List<User> users = UserManager.Load();
-            User user = users.FirstOrDefault(u => u.Email == "lewandowski.william@gmail.com");
-            userid = user.Id;
+            user = users.FirstOrDefault(u => u.Email == "lewandowski.william@gmail.com");
+
+            InitializeComponent();
 
             txtFirstName.Text = user.FirstName;
             txtLastName.Text = user.LastName;
             txtPhone.Text = user.Phone;
             lblEmailShow.Content = user.Email;
             txtPassword.Text = user.Password;
-            InitializeComponent();
         }
-        public AccountWindow(Guid accountid)
+        public AccountWindow(Guid userid)
         {
-            User user = UserManager.LoadById(accountid);
+            user = UserManager.LoadById(userid);
+            
+            InitializeComponent();
+
             txtFirstName.Text = user.FirstName;
             txtLastName.Text = user.LastName;
             txtPhone.Text = user.Phone;
             lblEmailShow.Content = user.Email;
             txtPassword.Text = user.Password;
-
-            userid = accountid;
-
-            InitializeComponent();
         }
 
         private void RefreshScreen()
@@ -60,25 +60,28 @@ namespace FoodOrderSystem.WPF
 
             dgvAddressInfo.ItemsSource = addresses;
             dgvPaymentInfo.ItemsSource = payments;
+
+            dgvAddressInfo.Columns[0].Visibility = Visibility.Hidden;
+            dgvAddressInfo.Columns[1].Visibility = Visibility.Hidden;
+            dgvAddressInfo.Columns[2].Header = "Address";
+            dgvAddressInfo.Columns[3].Header = "City";
+            dgvAddressInfo.Columns[4].Header = "State";
+            dgvAddressInfo.Columns[5].Header = "Zip";
+
+            dgvPaymentInfo.Columns[0].Visibility = Visibility.Hidden;
+            dgvPaymentInfo.Columns[1].Visibility = Visibility.Hidden;
+            dgvPaymentInfo.Columns[2].Header = "Card Holder";
+            dgvPaymentInfo.Columns[3].Header = "Card Number";
+            dgvPaymentInfo.Columns[4].Header = "Expiration Date";
+            dgvPaymentInfo.Columns[5].Header = "CVC";
         }
 
-        private void RefreshAddressScreen()
-        {
-            dgvAddressInfo.ItemsSource = null;
-            dgvAddressInfo.ItemsSource = addresses;
-        }
-        private void RefreshPaymentScreen()
-        {
-            dgvPaymentInfo.ItemsSource = null;
-            dgvPaymentInfo.ItemsSource = payments;
-        }
-
-        private void btnLoadAddress_Click(object sender, RoutedEventArgs e)
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                addresses = UserAddressManager.LoadByUserId(userid);
-                payments = UserPaymentManager.LoadByUserId(userid);
+                addresses = UserAddressManager.LoadByUserId(user.Id);
+                payments = UserPaymentManager.LoadByUserId(user.Id);
                 RefreshScreen();
             }
             catch (Exception ex)
@@ -86,19 +89,27 @@ namespace FoodOrderSystem.WPF
                 throw ex;
             }
         }
-        private void btnAddAddress_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void btnEditAddress_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void btnDeleteAddress_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgvAddressInfo.SelectedIndex > -1)
+            {
+                new AddressWindow(addresses[dgvAddressInfo.SelectedIndex].Id).ShowDialog();
+                RefreshScreen();
+            }
+            else if (dgvPaymentInfo.SelectedIndex > -1)
+            {
+                new PaymentWindow(payments[dgvPaymentInfo.SelectedIndex].Id).ShowDialog();
+                RefreshScreen();
+            }
+            else
+            {
+                MessageBox.Show("Please select either an address or payment to edit...");
+            }
+        }
     }
 }

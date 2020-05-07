@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FoodOrderSystem.API;
+using FoodOrderSystem.BL;
+using FoodOrderSystem.BL.Models;
+using FoodOrderSystem.UserControls;
 
 namespace FoodOrderSystem.WPF
 {
@@ -19,9 +23,39 @@ namespace FoodOrderSystem.WPF
     /// </summary>
     public partial class PaymentWindow : Window
     {
+        UserPayment payment;
+
         public PaymentWindow()
         {
+            payment = new UserPayment();
+
             InitializeComponent();
+        }
+        public PaymentWindow(Guid paymentid)
+        {
+            payment = UserPaymentManager.LoadById(paymentid);
+
+            InitializeComponent();
+
+            txtCardHolderName.Text = payment.CardHolderName;
+            txtCardNumber.Text = payment.CardNumber;
+            txtExpirationDate.Text = payment.ExpirationDate;
+            txtCVC.Text = payment.CVC;
+        }
+
+        private void btnInsert_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

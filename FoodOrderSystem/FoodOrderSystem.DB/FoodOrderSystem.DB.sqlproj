@@ -78,6 +78,7 @@
     <Build Include="Tables\tblUserAddress.sql" />
     <Build Include="Tables\tblUserPayment.sql" />
     <Build Include="StoredProcedures\spCreateUser.sql" />
+    <Build Include="Tables\tblState.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="FoodOrderSystem.DB.refactorlog" />
@@ -89,6 +90,7 @@
     <None Include="Post-Deployment\DefaultData\Users.sql" />
     <None Include="Post-Deployment\DefaultData\UserAddresses.sql" />
     <None Include="Post-Deployment\DefaultData\UserPayments.sql" />
+    <None Include="Post-Deployment\DefaultData\States.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post-Deployment\Script.PostDeployment.sql" />

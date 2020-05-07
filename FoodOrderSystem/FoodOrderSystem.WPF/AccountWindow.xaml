@@ -125,63 +125,33 @@
         <Label x:Name="lblPaymentInformation"
                Content="Payment Information"
                HorizontalAlignment="Left" 
-               Margin="301,230,0,0"
+               Margin="301,216,0,0"
                VerticalAlignment="Top"/>
-        <Button x:Name="btnLoadAddress"
-                Content="Load"
-                HorizontalAlignment="Left"
-                Margin="301,210,0,0" 
-                VerticalAlignment="Top"
-                Width="75" Click="btnLoadAddress_Click"/>
-        <Button x:Name="btnAddAddress"
-                Content="Add"
-                HorizontalAlignment="Left"
-                Margin="396,210,0,0" 
-                VerticalAlignment="Top"
-                Width="75" Click="btnAddAddress_Click"/>
-        <Button x:Name="btnEditAddress"
-                Content="Edit"
-                HorizontalAlignment="Left"
-                Margin="492,210,0,0" 
-                VerticalAlignment="Top"
-                Width="75" Click="btnEditAddress_Click"/>
-        <Button x:Name="btnDeleteAddress"
-                Content="Delete"
-                HorizontalAlignment="Left"
-                Margin="585,210,0,0" 
-                VerticalAlignment="Top"
-                Width="75" Click="btnDeleteAddress_Click"/>
-        
+
         <DataGrid x:Name="dgvPaymentInfo"
                   HorizontalAlignment="Left"
                   Height="125"
-                  Margin="301,261,0,0" 
+                  Margin="301,247,0,0" 
                   VerticalAlignment="Top"
                   Width="462"/>
-        <Button x:Name="btnLoadPayment"
+        <Button x:Name="btnLoad"
                 Content="Load"
                 HorizontalAlignment="Left"
-                Margin="301,394,0,0" 
+                Margin="301,384,0,0" 
                 VerticalAlignment="Top"
-                Width="75"/>
-        <Button x:Name="btnAddPayment"
+                Width="75" Click="btnLoad_Click"/>
+        <Button x:Name="btnAdd"
                 Content="Add"
                 HorizontalAlignment="Left"
-                Margin="396,394,0,0" 
+                Margin="398,384,0,0" 
                 VerticalAlignment="Top"
-                Width="75"/>
-        <Button x:Name="btnEditPayment"
+                Width="76" Click="btnAdd_Click"/>
+        <Button x:Name="btnEdit"
                 Content="Edit"
                 HorizontalAlignment="Left"
-                Margin="492,394,0,0" 
+                Margin="497,384,0,0" 
                 VerticalAlignment="Top"
-                Width="75"/>
-        <Button x:Name="btnDeletePayment"
-                Content="Delete"
-                HorizontalAlignment="Left"
-                Margin="585,394,0,0" 
-                VerticalAlignment="Top"
-                Width="75"/>
+                Width="76" Click="btnEdit_Click"/>
         <Button Content="Save" 
                 HorizontalAlignment="Left" 
                 Margin="43,232,0,0" 
@@ -192,7 +162,7 @@
                 Margin="140,232,0,0" 
                 VerticalAlignment="Top" 
                 Width="75"/>
-        
+
 
 
     </Grid>
