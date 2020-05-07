@@ -4,9 +4,7 @@
              x:Class="FoodOrderSystem.Xamarin.Views.MenuItemDetailPage"
              Title="{Binding Title}">
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <Label Text="{Binding MenuItem.ItemName}" FontSize="Medium"/>
+        <Label Text="{Binding MenuItem.Price}" FontSize="Small"/>
     </StackLayout>
 </ContentPage>

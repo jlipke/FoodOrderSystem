@@ -6,8 +6,8 @@ namespace FoodOrderSystem.Xamarin.Models
 {
     public enum MenuItemType
     {
-        Browse,
-        About
+        Menu,
+        Login
     }
     public class HomeMenuItem
     {
