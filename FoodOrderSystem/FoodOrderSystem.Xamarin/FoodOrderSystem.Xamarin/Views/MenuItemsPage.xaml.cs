@@ -46,8 +46,11 @@ namespace FoodOrderSystem.Xamarin.Views
         {
             base.OnAppearing();
 
-            if (viewModel.MenuItems.Count == 0)
-                viewModel.LoadMenuItemsCommand.Execute(null);
+            //if (viewModel.MenuItems.Count == 0)
+            //    viewModel.LoadItemsCommand.Execute(null);
+            //else
+            viewModel.LoadItemsCommand.Execute(null);
+            ItemsListView.ItemsSource = viewModel.MenuItems;
         }
     }
 }

@@ -16,13 +16,13 @@ namespace FoodOrderSystem.Xamarin.ViewModels
     public class MenuItemsViewModel : BaseViewModel
     {
         public ObservableCollection<MenuItem> MenuItems { get; set; }
-        public Command LoadMenuItemsCommand { get; set; }
+        public Command LoadItemsCommand { get; set; }
         public List<MenuItem> ListMenuItems;
         public MenuItemsViewModel()
         {
             Title = "Menu";
             MenuItems = new ObservableCollection<MenuItem>();
-            LoadMenuItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             
         }
 
@@ -63,6 +63,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
                 {
                     MenuItems.Add(menuitem);
                 }
+               
             }
             catch (Exception ex)
             {
