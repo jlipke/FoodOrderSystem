@@ -1,5 +1,7 @@
 ﻿using FoodOrderSystem.Xamarin.Models;
+using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,51 +18,61 @@ namespace FoodOrderSystem.Xamarin.ViewModels
             
         }
 
-        private async Task<User> LoadFromAPI(User user)
+        private async Task<User> LoadFromAPI(string email, string password)
         {
-            // Create apiUrl to distinguish between Android and iOS users
-            string apiUrl = null;
-            if (Device.RuntimePlatform == Device.Android)
-                apiUrl = "http://10.0.2.2:62568/api/User";
-            else if (Device.RuntimePlatform == Device.iOS)
-                apiUrl = "http://localhost:62568/api/User";
+            try
+            {
+                // Create apiUrl to distinguish between Android and iOS users
+                string apiUrl = null;
+                if (Device.RuntimePlatform == Device.Android)
+                    apiUrl = "http://10.0.2.2:62568/api/Login?Email=" + email + "&Password=" + password;
+                else if (Device.RuntimePlatform == Device.iOS)
+                    apiUrl = "http://localhost:62568/api/Login?Email=" + email + "&Password=" + password;
 
 
-            // Create HttpClient
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(apiUrl);
+                // Create HttpClient
 
-            // Http Post
-            var postTask = await client.PostAsJsonAsync<User>("user", user);
+                HttpClient client = new HttpClient();
+                //client.BaseAddress = new Uri(apiUrl);
 
-            // Return whether or not the post was successful
-            return postTask.IsSuccessStatusCode;
+
+                // Http Get
+
+                var response = await client.GetStringAsync(apiUrl);
+                var item = JsonConvert.DeserializeObject<User>(response);
+
+                // Return user
+                return item;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+           
 
         }
 
-        public async Task<bool> CreateUser(string email, string password)    // Log in
+        public async Task<User> LogIn(string email, string password)    // Log in
         {
             if (IsBusy)
-                return false;
+                return null;
 
             IsBusy = true;
 
             try
             {
-                User enteredUser = new User();
-                User loggedinUser = new User();
-                enteredUser.Email = email;
-                enteredUser.Password = password;
+               
+                User loggedinUser = await LoadFromAPI(email, password);
 
-                 loggedinUser = await LoadFromAPI(user);
-
-                return returnCode;
+                return loggedinUser;
 
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                return false;
+                return null;
             }
             finally
             {

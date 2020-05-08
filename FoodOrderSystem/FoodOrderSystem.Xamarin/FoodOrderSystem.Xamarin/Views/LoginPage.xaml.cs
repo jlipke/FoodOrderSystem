@@ -36,8 +36,12 @@ namespace FoodOrderSystem.Xamarin.Views
                     string password = txtPassword.Text;
 
                     User loggedinuser = await viewModel.LogIn(email, password);
-                    // API request for account login
-                    // return 
+
+                    if(loggedinuser != null)
+                        await DisplayAlert("Alert", "Welcome, " + loggedinuser.FirstName, "Ok");
+                    else
+                        await DisplayAlert("Alert", "Incorrect Login information ", "Ok");
+
                 }
                 
             }

@@ -13,9 +13,9 @@ namespace FoodOrderSystem.API.Controllers
     {
 
         // GET: api/Login/
-        public User Get([FromBody]User user)
+        public User Get(string email, string password)
         {
-            return UserManager.LoadByEmail(user.Email, user.Password); ;
+            return UserManager.LoadByEmail(email, password);
         }
 
         
