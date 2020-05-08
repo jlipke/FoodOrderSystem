@@ -29,9 +29,9 @@ namespace FoodOrderSystem.WPF
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
-
+        
         private void btnMenuItem_Click(object sender, RoutedEventArgs e)
         {
 

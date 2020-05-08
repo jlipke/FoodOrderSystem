@@ -65,7 +65,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ucNavigation.xaml.cs">
+    <Compile Include="MenuWindow.xaml.cs">
+      <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingWindow.xaml.cs">
+      <DependentUpon>ShoppingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucNavigation.xaml.cs">
       <DependentUpon>ucNavigation.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountWindow.xaml">
@@ -104,11 +110,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PaymentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ucNavigation.xaml">
+    <Page Include="ShoppingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ucNavigation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,10 +172,6 @@
     <ProjectReference Include="..\FoodOrderSystem.BL\FoodOrderSystem.BL.csproj">
       <Project>{0abcc323-4931-4080-a01c-472d8ccb0db0}</Project>
       <Name>FoodOrderSystem.BL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FoodOrderSystem.UserControls\FoodOrderSystem.UserControls.csproj">
-      <Project>{8d620f61-1503-44b5-9687-75bb9547880e}</Project>
-      <Name>FoodOrderSystem.UserControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
