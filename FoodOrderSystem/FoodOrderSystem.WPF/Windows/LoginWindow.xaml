@@ -46,6 +46,6 @@
                 HorizontalAlignment="Left"
                 Margin="35,86,0,0"
                 VerticalAlignment="Top" 
-                Width="100"/>
+                Width="100" Click="btnCreate_Click"/>
     </Grid>
 </Window>

@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using FoodOrderSystem.API;
 using FoodOrderSystem.BL;
 using FoodOrderSystem.BL.Models;
-using FoodOrderSystem.UserControls;
 
 namespace FoodOrderSystem.WPF
 {
@@ -45,12 +44,17 @@ namespace FoodOrderSystem.WPF
                 {
                     MessageBox.Show("Invalid email or password.");
                     HomeWindow.UserAuthentication = Guid.Empty;
-                    txtEmail.Text = "";
                     txtPassword.Password = "";
                 }
             }
             else
                 MessageBox.Show("Please enter data into the fields.");
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            new CreateAccountWindow().ShowDialog();
         }
     }
 }

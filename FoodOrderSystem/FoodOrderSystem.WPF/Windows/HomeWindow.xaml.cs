@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using FoodOrderSystem.API;
 using FoodOrderSystem.BL;
 using FoodOrderSystem.BL.Models;
-using FoodOrderSystem.UserControls;
 
 namespace FoodOrderSystem.WPF
 {

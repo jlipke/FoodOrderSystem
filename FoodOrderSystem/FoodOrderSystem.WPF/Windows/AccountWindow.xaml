@@ -123,16 +123,18 @@
                 Margin="497,384,0,0" 
                 VerticalAlignment="Top"
                 Width="76" Click="btnEdit_Click"/>
-        <Button Content="Save" 
+        <Button x:Name="btnSave"
+                Content="Save" 
                 HorizontalAlignment="Left" 
                 Margin="43,232,0,0" 
                 VerticalAlignment="Top" 
-                Width="75"/>
-        <Button Content="Cancel" 
+                Width="75" Click="btnSave_Click"/>
+        <Button x:Name="btnCancel"
+                Content="Cancel" 
                 HorizontalAlignment="Left" 
                 Margin="140,232,0,0" 
                 VerticalAlignment="Top" 
-                Width="75"/>
+                Width="75" Click="btnCancel_Click"/>
 
 
 

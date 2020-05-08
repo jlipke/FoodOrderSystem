@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using FoodOrderSystem.API;
 using FoodOrderSystem.BL;
 using FoodOrderSystem.BL.Models;
-using FoodOrderSystem.UserControls;
 
 namespace FoodOrderSystem.WPF
 {
@@ -55,14 +54,12 @@ namespace FoodOrderSystem.WPF
 
             DrawScreen();
         }
-
         private void DrawScreen()
         {
             ucNavigation navigation = new ucNavigation();
             navigation.Margin = new Thickness(0, 0, 0, 0);
             grdAccountScreen.Children.Add(navigation);
         }
-
         private void RefreshScreen()
         {
             dgvAddressInfo.ItemsSource = null;
@@ -86,6 +83,7 @@ namespace FoodOrderSystem.WPF
             dgvPaymentInfo.Columns[5].Header = "CVC";
         }
 
+        // Buttons
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -103,7 +101,6 @@ namespace FoodOrderSystem.WPF
         {
 
         }
-
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             if (dgvAddressInfo.SelectedIndex > -1)
@@ -113,13 +110,34 @@ namespace FoodOrderSystem.WPF
             }
             else if (dgvPaymentInfo.SelectedIndex > -1)
             {
-                new PaymentWindow(payments[dgvPaymentInfo.SelectedIndex].Id).ShowDialog();
+                new PaymentWindow(payments[dgvPaymentInfo.SelectedIndex].Id, user.Id).ShowDialog();
                 RefreshScreen();
             }
             else
             {
                 MessageBox.Show("Please select either an address or payment to edit...");
             }
+        }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            user.FirstName = txtFirstName.Text;
+            user.LastName = txtLastName.Text;
+            user.Phone = txtPhone.Text;
+            user.Password = txtPhone.Text;
+
+            int result = UserManager.Update(user);
+
+            if (result >= 1)
+            {
+                MessageBox.Show("Save Completed.");
+                this.Close();
+            }
+            else
+                MessageBox.Show("Invalid information. Save cancelled.");
+        }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
