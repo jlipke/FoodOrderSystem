@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="FoodOrderSystem.UserControls.ucNavigation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FoodOrderSystem.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="595">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" 
+                   HorizontalAlignment="Left"
+                   Height="40"
+                   Stroke="Black" 
+                   VerticalAlignment="Top"
+                   Width="595"/>
+        <Button x:Name="btnHome"
+                Content="Home"
+                HorizontalAlignment="Left" 
+                Margin="10,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="100" Click="btnHome_Click"/>
+        <Button x:Name="btnMenuItem"
+                Content="Menu Items"
+                HorizontalAlignment="Left" 
+                Margin="275,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="100" Click="btnMenuItem_Click"/>
+        <Button x:Name="btnShoppingCart"
+                Content="Shooping Cart"
+                HorizontalAlignment="Left" 
+                Margin="380,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="100" Click="btnShoppingCart_Click"/>
+        <Button x:Name="btnAccount"
+                Content="Account"
+                HorizontalAlignment="Left" 
+                Margin="485,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="100" Click="btnAccount_Click"/>
+
+    </Grid>
+</UserControl>

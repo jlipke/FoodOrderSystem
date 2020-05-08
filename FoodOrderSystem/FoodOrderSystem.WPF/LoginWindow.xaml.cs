@@ -38,20 +38,19 @@ namespace FoodOrderSystem.WPF
 
                 if (result >= 1)
                 {
-                    MessageBox.Show("Login accepted!");
+                    this.Close();
+                    new AccountWindow(id).ShowDialog();
                 }
                 else
                 {
                     MessageBox.Show("Invalid email or password.");
+                    HomeWindow.UserAuthentication = Guid.Empty;
+                    txtEmail.Text = "";
+                    txtPassword.Text = "";
                 }
-
-                txtEmail.Text = "";
-                txtPassword.Text = "";
             }
             else
-            {
                 MessageBox.Show("Please enter data into the fields.");
-            }
         }
     }
 }

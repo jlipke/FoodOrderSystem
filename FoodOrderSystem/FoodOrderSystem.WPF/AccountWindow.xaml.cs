@@ -28,7 +28,6 @@ namespace FoodOrderSystem.WPF
         User user;
         public AccountWindow()
         {
-
             List<User> users = UserManager.Load();
             user = users.FirstOrDefault(u => u.Email == "lewandowski.william@gmail.com");
 
@@ -38,7 +37,9 @@ namespace FoodOrderSystem.WPF
             txtLastName.Text = user.LastName;
             txtPhone.Text = user.Phone;
             lblEmailShow.Content = user.Email;
-            txtPassword.Text = user.Password;
+            txtPassword.Password = user.Password;
+
+            DrawScreen();
         }
         public AccountWindow(Guid userid)
         {
@@ -50,7 +51,16 @@ namespace FoodOrderSystem.WPF
             txtLastName.Text = user.LastName;
             txtPhone.Text = user.Phone;
             lblEmailShow.Content = user.Email;
-            txtPassword.Text = user.Password;
+            txtPassword.Password = user.Password;
+
+            DrawScreen();
+        }
+
+        private void DrawScreen()
+        {
+            ucNavigation navigation = new ucNavigation();
+            navigation.Margin = new Thickness(0, 0, 0, 0);
+            grdAccountScreen.Children.Add(navigation);
         }
 
         private void RefreshScreen()

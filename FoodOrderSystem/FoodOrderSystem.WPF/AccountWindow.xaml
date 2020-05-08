@@ -6,37 +6,7 @@
         xmlns:local="clr-namespace:FoodOrderSystem.WPF"
         mc:Ignorable="d"
         Title="AccountWindow" Height="450" Width="800">
-    <Grid>
-        <Rectangle Fill="#FFF4F4F5" 
-                   HorizontalAlignment="Left" 
-                   Height="40" Stroke="Black" 
-                   VerticalAlignment="Top" 
-                   Width="795"/>
-
-        <Button x:Name="btnAccount"
-                Content="Account" 
-                HorizontalAlignment="Left"
-                Margin="678,10,0,0" 
-                VerticalAlignment="Top" 
-                Width="100"/>
-        <Button x:Name="btnShoppingCart"
-                Content="Shopping Cart" 
-                HorizontalAlignment="Left" 
-                Margin="560,10,0,0" 
-                VerticalAlignment="Top" 
-                Width="100"/>
-        <Button x:Name="btnMenu"
-                Content="Menu Items" 
-                HorizontalAlignment="Left" 
-                Margin="440,10,0,0" 
-                VerticalAlignment="Top" 
-                Width="100"/>
-        <Button x:Name="btnHome"
-                Content="Home" 
-                HorizontalAlignment="Left" 
-                Margin="10,10,0,0" 
-                VerticalAlignment="Top" 
-                Width="100"/>
+    <Grid x:Name="grdAccountScreen">
 
         <!-- Personal Info -->
         <Label x:Name="lblPersonalInformation"
@@ -100,14 +70,15 @@
                Margin="15,189,0,0" 
                VerticalAlignment="Top" 
                Width="65"/>
-        <TextBox x:Name="txtPassword" 
-                 HorizontalAlignment="Left" 
-                 Height="22" 
-                 Margin="87,189,0,0" 
-                 TextWrapping="Wrap"
-                 Text=""
-                 VerticalAlignment="Top" 
-                 Width="158"/>
+        <PasswordBox x:Name="txtPassword"  
+                     ToolTip="Password"
+                     PasswordChar="*"
+                     HorizontalAlignment="Left" 
+                     Height="22" 
+                     Margin="87,189,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="158"/>
+                     
 
         <!-- Display Address -->
         <Label x:Name="lblAddressInformation"

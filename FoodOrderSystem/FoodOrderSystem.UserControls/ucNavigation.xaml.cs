@@ -10,31 +10,45 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FoodOrderSystem.API;
 using FoodOrderSystem.BL;
 using FoodOrderSystem.BL.Models;
-using FoodOrderSystem.UserControls;
 
-namespace FoodOrderSystem.WPF
+namespace FoodOrderSystem.UserControls
 {
     /// <summary>
-    /// Interaction logic for HomeWindow.xaml
+    /// Interaction logic for ucNavigation.xaml
     /// </summary>
-    public partial class HomeWindow : Window
+    public partial class ucNavigation : UserControl
     {
+
         public static Guid UserAuthentication { get; set; }
 
-        public HomeWindow()
+        public ucNavigation()
         {
             InitializeComponent();
-            DrawScreen();
         }
-        private void DrawScreen()
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            ucNavigation navigation = new ucNavigation();
-            navigation.Margin = new Thickness(0, 0, 0, 0);
-            grdHomeScreen.Children.Add(navigation);
+            
+        }
+
+        private void btnMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnShoppingCart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAccount_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
