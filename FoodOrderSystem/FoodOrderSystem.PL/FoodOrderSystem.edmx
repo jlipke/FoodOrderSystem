@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FoodOrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FoodOrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -36,6 +36,13 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MenuItemId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -184,6 +191,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
           <EntitySet Name="tblMenuItem" EntityType="Self.tblMenuItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOrderItem" EntityType="Self.tblOrderItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserAddress" EntityType="Self.tblUserAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserPayment" EntityType="Self.tblUserPayment" Schema="dbo" store:Type="Tables" />
@@ -226,8 +234,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             <End Role="tblUserPayment" EntitySet="tblUserPayment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FoodOrderSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -454,7 +461,15 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             <Parameter Name="Phone" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="tblStates" EntityType="FoodOrderSystemModel.tblState" />
         </EntityContainer>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -546,6 +561,14 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spCreateUser" FunctionName="FoodOrderSystemModel.Store.spCreateUser" />
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -58,7 +58,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
             {
                 MenuItems.Clear();
                 ListMenuItems = await LoadFromAPI();
-                var menuitems = ListMenuItems; /*await DataStore.GetItemsAsync(true); */   // This will be where I add the list of menuItems from the api
+                var menuitems = ListMenuItems;    // This will be where I add the list of menuItems from the api
                 foreach (var menuitem in menuitems)
                 {
                     MenuItems.Add(menuitem);

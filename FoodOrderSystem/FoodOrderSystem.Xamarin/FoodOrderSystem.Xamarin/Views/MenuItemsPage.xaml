@@ -30,6 +30,7 @@
                         <StackLayout Padding="10">
                             <Label Text="{Binding ItemName}" 
                                 LineBreakMode="NoWrap" 
+                                
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
                             <Label Text="{Binding Price}" 

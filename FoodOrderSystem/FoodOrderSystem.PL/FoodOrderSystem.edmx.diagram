@@ -20,6 +20,7 @@
         <AssociationConnector Association="FoodOrderSystemModel.OrderItem_OrderId" ManuallyRouted="false" />
         <AssociationConnector Association="FoodOrderSystemModel.UserAddress_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="FoodOrderSystemModel.UserPayment_UserId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FoodOrderSystemModel.tblState" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

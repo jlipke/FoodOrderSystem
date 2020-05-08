@@ -35,6 +35,7 @@ namespace FoodOrderSystem.PL
         public virtual DbSet<tblUserAddress> tblUserAddresses { get; set; }
         public virtual DbSet<tblUserPayment> tblUserPayments { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
+        public virtual DbSet<tblState> tblStates { get; set; }
     
         public virtual int spCreateUser(string firstName, string lastName, string email, string phone, string password)
         {
