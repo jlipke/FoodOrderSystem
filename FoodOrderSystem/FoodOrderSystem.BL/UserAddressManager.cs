@@ -38,6 +38,21 @@ namespace FoodOrderSystem.BL
             }
         }
 
+        public static List<State> LoadStates()
+        {
+            try
+            {
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                {
+                    tbl
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static UserAddress LoadById(Guid id)
         {
             try

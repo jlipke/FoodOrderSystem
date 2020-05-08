@@ -42,6 +42,12 @@ namespace FoodOrderSystem.WPF
 
         }
 
+        private void Reload()
+        {
+            cboState.ItemsSource = null;
+
+        }
+
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
             try
