@@ -26,7 +26,7 @@ namespace FoodOrderSystem.Xamarin.Views
             {
                 if (txtEmail.Text == null || txtReEmail.Text == null || txtPassword.Text == null || txtRePassword.Text == null || txtFirst.Text == null || txtLast.Text == null || txtPhone.Text == null)
                 {
-                    await DisplayAlert("Alert", "Please Fill all of the boxes", "Ok");
+                    await DisplayAlert("Alert", "Please fill all of your information", "Ok");
                 }
                 else if (txtEmail.Text != txtReEmail.Text)
                 {
@@ -50,10 +50,11 @@ namespace FoodOrderSystem.Xamarin.Views
                     if (returnCode == true)
                     {
                         await DisplayAlert("Alert", "Your Account was created Successfully", "Ok");
+                        await Navigation.PushAsync(new MenuItemsPage());
                     }
                     else
                     {
-                        await DisplayAlert("Alert", "Something went wrong on our end..", "Ok");
+                        await DisplayAlert("Alert", "Something went wrong on our end.", "Ok");
                     }
 
                 }

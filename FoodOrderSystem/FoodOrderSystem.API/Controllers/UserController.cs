@@ -11,17 +11,19 @@ namespace FoodOrderSystem.API.Controllers
 {
     public class UserController : ApiController
     {
+
+
+       // GET: api/User/5
+        public User Get(Guid id)
+        {
+            return UserManager.LoadById(id); ;
+        }
+        
         // GET: api/User
         public IEnumerable<User> Get()
         {
             return UserManager.Load();
 
-        }
-
-        // GET: api/User/5
-        public User Get(Guid id)
-        {
-            return UserManager.LoadById(id); ;
         }
 
         // POST: api/User

@@ -37,11 +37,11 @@
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
                 
-                <Entry Placeholder="Email" PlaceholderColor="LightSkyBlue" />
-                <Entry Placeholder="Password" IsPassword="true" PlaceholderColor="LightSkyBlue"/>
+                <Entry x:Name="txtEmail" Placeholder="Email" PlaceholderColor="LightSkyBlue" />
+                <Entry x:Name="txtPassword" Placeholder="Password" IsPassword="true" PlaceholderColor="LightSkyBlue"/>
                 
                 <Button Margin="0,10,0,0" Text="Log In"
-                        Command="{Binding LogInCommand}"
+                        Clicked="LoginClicked"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
                

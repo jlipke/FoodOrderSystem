@@ -76,6 +76,41 @@ namespace FoodOrderSystem.BL
             }
         }
 
+        public static User LoadByEmail(string email, string password)
+        {
+            try
+            {
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                {
+                    tblUser userRow = dc.tblUsers.FirstOrDefault(a => a.Email == email && a.Password == password);
+
+                    if (userRow != null)
+                    {
+                        return new User
+                        {
+                            Id = userRow.Id,
+                            FirstName = userRow.FirstName,
+                            LastName = userRow.LastName,
+                            Email = userRow.Email,
+                            Phone = userRow.Phone,
+                            Password = userRow.Password,
+                            Addresses = UserAddressManager.LoadByUserId(userRow.Id),
+                            Payments = UserPaymentManager.LoadByUserId(userRow.Id)
+                        };
+                    }
+
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static int Insert(User user)
         {
             try
