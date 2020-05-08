@@ -35,17 +35,17 @@
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
                 
-                <Entry Placeholder="Email" PlaceholderColor="LightSkyBlue" />
-                <Entry Placeholder="Re-enter Email" PlaceholderColor="LightSkyBlue" />
-                <Entry Placeholder="Password" IsPassword="true" PlaceholderColor="LightSkyBlue"/>
-                <Entry Placeholder="Re-enter Password" IsPassword="true" PlaceholderColor="LightSkyBlue"/>
-                <Entry Placeholder="First Name" PlaceholderColor="LightSkyBlue" />
-                <Entry Placeholder="Last Name" PlaceholderColor="LightSkyBlue" />
-                <Entry Placeholder="Phone" PlaceholderColor="LightSkyBlue" />
+                <Entry x:Name ="txtEmail" Placeholder="Email" PlaceholderColor="LightSkyBlue" />
+                <Entry x:Name ="txtReEmail" Placeholder="Re-enter Email" PlaceholderColor="LightSkyBlue" />
+                <Entry x:Name ="txtPassword" Placeholder="Password" IsPassword="true" PlaceholderColor="LightSkyBlue"/>
+                <Entry x:Name ="txtRePassword" Placeholder="Re-enter Password" IsPassword="true" PlaceholderColor="LightSkyBlue"/>
+                <Entry x:Name ="txtFirst" Placeholder="First Name" PlaceholderColor="LightSkyBlue" />
+                <Entry x:Name ="txtLast" Placeholder="Last Name" PlaceholderColor="LightSkyBlue" />
+                <Entry x:Name ="txtPhone" Placeholder="Phone" PlaceholderColor="LightSkyBlue" />
                 
                 
-                <Button Margin="0,10,0,0" Text="Log In"
-                        Command="{Binding CreateAccountCommand}"
+                <Button Margin="0,10,0,0" Text="Create Account"
+                        Clicked="CreateAccountClicked"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
                 

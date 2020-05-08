@@ -84,6 +84,9 @@
     <Compile Include="tblOrderItem.cs">
       <DependentUpon>FoodOrderSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblState.cs">
+      <DependentUpon>FoodOrderSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblUser.cs">
       <DependentUpon>FoodOrderSystem.tt</DependentUpon>
     </Compile>
