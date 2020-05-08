@@ -32,9 +32,9 @@ namespace FoodOrderSystem.WPF
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (txtEmail.Text != "" && txtPassword.Text != "")
+            if (txtEmail.Text != "" && txtPassword.Password != "")
             {
-                int result = UserManager.Login(txtEmail.Text, txtPassword.Text, out id);
+                int result = UserManager.Login(txtEmail.Text, txtPassword.Password, out id);
 
                 if (result >= 1)
                 {
@@ -46,7 +46,7 @@ namespace FoodOrderSystem.WPF
                     MessageBox.Show("Invalid email or password.");
                     HomeWindow.UserAuthentication = Guid.Empty;
                     txtEmail.Text = "";
-                    txtPassword.Text = "";
+                    txtPassword.Password = "";
                 }
             }
             else

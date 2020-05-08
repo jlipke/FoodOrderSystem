@@ -27,15 +27,14 @@
                Margin="35,46,0,0" 
                VerticalAlignment="Top" 
                Width="65"/>
-        <TextBox x:Name="txtPassword" 
-                 HorizontalAlignment="Left"
-                 Height="22"
-                 Margin="107,46,0,0" 
-                 TextWrapping="Wrap" 
-                 Text=""
-                 VerticalAlignment="Top" 
-                 Width="158"/>
-
+        <PasswordBox x:Name="txtPassword"  
+                     ToolTip="Password"
+                     PasswordChar="*"
+                     HorizontalAlignment="Left" 
+                     Height="22" 
+                     Margin="107,46,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="158"/>
         <Button x:Name="btnLogin" 
                 Content="Login"
                 HorizontalAlignment="Left" 
