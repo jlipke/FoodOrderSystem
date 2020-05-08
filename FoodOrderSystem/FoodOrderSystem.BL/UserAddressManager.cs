@@ -44,7 +44,14 @@ namespace FoodOrderSystem.BL
             {
                 using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
-                    tbl
+                    List<State> results = new List<State>();
+                    dc.tblStates.ToList().ForEach(s => results.Add(new State
+                    {
+                        Id = s.Id,
+                        Name = s.Name
+                    }));
+
+                    return results;
                 }
             }
             catch (Exception ex)

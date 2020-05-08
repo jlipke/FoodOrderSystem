@@ -237,6 +237,32 @@ namespace FoodOrderSystem.BL
             }
         }
 
+        public static int Login(string userEmail, string userPassword, out Guid id)
+        {
+            try
+            {
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                {
+                    tblUser user = dc.tblUsers.FirstOrDefault(l => l.Email == userEmail &&
+                                                                   l.Password == userPassword);
+                    if (user != null)
+                    {
+                        id = user.Id;
+                        return 1;
+                    }
+                    else
+                    {
+                        id = Guid.Empty;
+                        return 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

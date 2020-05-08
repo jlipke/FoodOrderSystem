@@ -10,19 +10,48 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FoodOrderSystem.API;
+using FoodOrderSystem.BL;
+using FoodOrderSystem.BL.Models;
+using FoodOrderSystem.UserControls;
 
 namespace FoodOrderSystem.WPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginWindow : Window
     {
-        public MainWindow()
+        Guid id;
+
+        public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtEmail.Text != "" && txtPassword.Text != "")
+            {
+                int result = UserManager.Login(txtEmail.Text, txtPassword.Text, out id);
+
+                if (result >= 1)
+                {
+                    MessageBox.Show("Login accepted!");
+                }
+                else
+                {
+                    MessageBox.Show("Invalid email or password.");
+                }
+
+                txtEmail.Text = "";
+                txtPassword.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Please enter data into the fields.");
+            }
         }
     }
 }

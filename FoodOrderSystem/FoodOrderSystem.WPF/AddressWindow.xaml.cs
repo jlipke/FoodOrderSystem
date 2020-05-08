@@ -24,6 +24,7 @@ namespace FoodOrderSystem.WPF
     public partial class AddressWindow : Window
     {
         UserAddress address;
+        List<State> states;
 
         public AddressWindow()
         {
@@ -38,6 +39,13 @@ namespace FoodOrderSystem.WPF
 
             txtAddress.Text = address.Address;
             txtCity.Text = address.City;
+
+            Reload();
+            cboState.DisplayMemberPath = "Name";
+            cboState.SelectedValuePath = "Id";
+
+            cboState.SelectedItem = address.State;
+
             txtZip.Text = address.ZipCode;
 
         }
@@ -45,7 +53,8 @@ namespace FoodOrderSystem.WPF
         private void Reload()
         {
             cboState.ItemsSource = null;
-
+            states = UserAddressManager.LoadStates();
+            cboState.ItemsSource = states;
         }
 
         private void btnInsert_Click(object sender, RoutedEventArgs e)
