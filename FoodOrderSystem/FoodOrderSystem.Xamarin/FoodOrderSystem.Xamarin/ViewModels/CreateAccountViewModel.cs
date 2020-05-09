@@ -21,16 +21,19 @@ namespace FoodOrderSystem.Xamarin.ViewModels
         private async Task<bool> InsertIntoAPI(User user)
         {
             // Create apiUrl to distinguish between Android and iOS users
-            string apiUrl = null;
-            if (Device.RuntimePlatform == Device.Android)
-                apiUrl = "http://10.0.2.2:62568/api/User";
-            else if (Device.RuntimePlatform == Device.iOS)
-                apiUrl = "http://localhost:62568/api/User";
+            // This was used to connect to localhost api. Android needed a redirect with Jexus Manager because the 
+            // Android Emulator doesn't understand 'localhost' and needs to be told '127.0.0.1'
+
+            //string apiUrl = null;
+            //if (Device.RuntimePlatform == Device.Android)
+            //    apiUrl = "http://10.0.2.2:62568/api/User";
+            //else if (Device.RuntimePlatform == Device.iOS)
+            //    apiUrl = "http://localhost:62568/api/User";
 
 
             // Create HttpClient
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(apiUrl);
+            client.BaseAddress = new Uri("http://jwfoodordersystem.azurewebsites.net/api/User");
 
             // Http Post
             var postTask = await client.PostAsJsonAsync<User>("user", user);

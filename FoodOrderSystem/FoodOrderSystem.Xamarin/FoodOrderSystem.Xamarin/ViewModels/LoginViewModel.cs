@@ -23,11 +23,14 @@ namespace FoodOrderSystem.Xamarin.ViewModels
             try
             {
                 // Create apiUrl to distinguish between Android and iOS users
-                string apiUrl = null;
-                if (Device.RuntimePlatform == Device.Android)
-                    apiUrl = "http://10.0.2.2:62568/api/Login?Email=" + email + "&Password=" + password;
-                else if (Device.RuntimePlatform == Device.iOS)
-                    apiUrl = "http://localhost:62568/api/Login?Email=" + email + "&Password=" + password;
+                // This was used to connect to localhost api. Android needed a redirect with Jexus Manager because the 
+                // Android Emulator doesn't understand 'localhost' and needs to be told '127.0.0.1'
+
+                //string apiUrl = null;
+                //if (Device.RuntimePlatform == Device.Android)
+                //    apiUrl = "http://10.0.2.2:62568/api/Login?Email=" + email + "&Password=" + password;
+                //else if (Device.RuntimePlatform == Device.iOS)
+                //    apiUrl = "http://localhost:62568/api/Login?Email=" + email + "&Password=" + password;
 
 
                 // Create HttpClient
@@ -38,7 +41,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
                 // Http Get
 
-                var response = await client.GetStringAsync(apiUrl);
+                var response = await client.GetStringAsync("http://jwfoodordersystem.azurewebsites.net/api/Login?Email=" + email + "&Password=" + password);
                 var item = JsonConvert.DeserializeObject<User>(response);
 
                 // Return user
