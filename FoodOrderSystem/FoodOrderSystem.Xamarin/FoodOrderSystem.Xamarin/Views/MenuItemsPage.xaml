@@ -4,15 +4,11 @@
              x:Class="FoodOrderSystem.Xamarin.Views.MenuItemsPage"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="add.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="tbUserName" Text="Guest" Clicked="TbUserName_Clicked">
+            
         </ToolbarItem>
-    </ContentPage.ToolbarItems>-->
+    </ContentPage.ToolbarItems>
 
     <StackLayout>
         <ListView x:Name="ItemsListView"

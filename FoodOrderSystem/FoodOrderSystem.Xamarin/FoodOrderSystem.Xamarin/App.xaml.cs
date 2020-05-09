@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FoodOrderSystem.Xamarin.Views;
+using FoodOrderSystem.Xamarin.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FoodOrderSystem.Xamarin
@@ -9,6 +10,7 @@ namespace FoodOrderSystem.Xamarin
     public partial class App : Application
     {
         public static bool IsUserLoggedIn { get; set; }
+        public static User LoggedInUser { get; set; }
         
         public App()
         {

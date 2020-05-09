@@ -37,10 +37,18 @@ namespace FoodOrderSystem.Xamarin.Views
 
                     User loggedinuser = await viewModel.LogIn(email, password);
 
-                    if(loggedinuser != null)
-                        await DisplayAlert("Alert", "Welcome, " + loggedinuser.FirstName, "Ok");
+                    if (loggedinuser != null)
+                    {
+                        await DisplayAlert("Login Successful", "Welcome, " + loggedinuser.FirstName, "Ok");
+                        App.IsUserLoggedIn = true;
+                        App.LoggedInUser = loggedinuser;
+                        await Navigation.PushAsync(new MenuItemsPage());
+                    }
+
                     else
+                    {
                         await DisplayAlert("Alert", "Incorrect Login information ", "Ok");
+                    }
 
                 }
                 
