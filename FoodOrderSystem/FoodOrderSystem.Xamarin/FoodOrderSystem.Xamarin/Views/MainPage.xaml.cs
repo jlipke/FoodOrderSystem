@@ -29,8 +29,36 @@ namespace FoodOrderSystem.Xamarin.Views
                     case (int)MenuItemType.Menu:
                         MenuPages.Add(id, new NavigationPage(new MenuItemsPage()));
                         break;
-                    case (int)MenuItemType.Login:
-                        MenuPages.Add(id, new NavigationPage(new LoginPage()));
+
+                    case (int)MenuItemType.ShoppingCart:
+                        //if (App.IsUserLoggedIn == false)
+                        //{
+                            //MenuPages.Add(id, new NavigationPage(new MenuItemsPage()));
+                            //MasterBehavior = MasterBehavior.Popover;
+                           // await Navigation.PushAsync(new LoginPage());
+                        //}
+                        //if (App.IsUserLoggedIn == true)
+                        //{
+                            //if (App.userCart.Count == 0 || App.userCart == null)
+                            //{
+                            //    await DisplayAlert("Alert", "There is nothing in your cart", "Ok");
+                            //    MenuPages.Add(id, new NavigationPage(new MenuItemsPage()));
+                            //}
+                            //else
+                            //{
+                                MenuPages.Add(id, new NavigationPage(new ShoppingCartPage()));
+                            //}
+                       // }
+                        break;
+                    case (int)MenuItemType.AccountDetails:
+                        if (App.IsUserLoggedIn == false)
+                        {
+                            MenuPages.Add(id, new NavigationPage(new LoginPage()));
+                        }
+                        if (App.IsUserLoggedIn == true)
+                        {
+                            //MenuPages.Add(id, new NavigationPage(new AccountDetailsPage()));
+                        }
                         break;
                 }
             }

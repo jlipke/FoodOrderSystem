@@ -12,7 +12,11 @@ namespace FoodOrderSystem.Xamarin.Views
     public partial class MenuItemDetailPage : ContentPage
     {
         MenuItemDetailViewModel viewModel;
-
+        MenuItem item = new MenuItem();
+        //{
+        //    ItemName = "Item Name",     // Placeholder
+        //    Price = (float)4.99
+        //};
         public MenuItemDetailPage(MenuItemDetailViewModel viewModel)
         {
             InitializeComponent();
@@ -24,14 +28,23 @@ namespace FoodOrderSystem.Xamarin.Views
         {
             InitializeComponent();
 
-            var item = new MenuItem
-            {
-                ItemName = "Item Name",
-                Price = (float)4.99
-            };
+            
 
             viewModel = new MenuItemDetailViewModel(item);
             BindingContext = viewModel;
+        }
+
+        private void AddToCart_Clicked(object sender, EventArgs e)
+        {
+        //    OrderItem orderItem = new OrderItem()
+        //    {
+        //        Id = Guid.NewGuid(),
+        //        OrderId = App.userCart.Id,
+        //        MenuItemId = item.Id
+        //};
+            
+            App.userCart.Add(item);
+            DisplayAlert("Alert", "Added to Cart. There are " + App.userCart.Count + " item(s) in your cart", "Ok");
         }
     }
 }

@@ -12,6 +12,7 @@ namespace FoodOrderSystem.Xamarin.Views
     {
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         List<HomeMenuItem> menuItems;
+
         public MenuPage()
         {
             InitializeComponent();
@@ -20,7 +21,6 @@ namespace FoodOrderSystem.Xamarin.Views
             {
                 new HomeMenuItem {Id = MenuItemType.Menu, Title="Menu" },
                 new HomeMenuItem {Id = MenuItemType.ShoppingCart, Title="Shopping Cart" },
-                new HomeMenuItem {Id = MenuItemType.Login, Title="Login" },
                 new HomeMenuItem {Id = MenuItemType.AccountDetails, Title="Account" },
             };
 

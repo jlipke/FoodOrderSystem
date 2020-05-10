@@ -17,12 +17,16 @@ namespace FoodOrderSystem.Xamarin.ViewModels
     {
         public ObservableCollection<MenuItem> MenuItems { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command GoToAccountSettingsCommand { get; set; }
+        public static string Name { get; set; }
         public List<MenuItem> ListMenuItems;
+
         public MenuItemsViewModel()
         {
             Title = "Menu";
             MenuItems = new ObservableCollection<MenuItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            //GoToAccountSettingsCommand = new Command(async () => await ExecuteGoToAccountSettings());
             
         }
 
@@ -49,7 +53,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
 
         }
-
+        
         async Task ExecuteLoadItemsCommand()    // Will load the items in this section
         {
             if (IsBusy)
@@ -59,9 +63,11 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
             try
             {
+                
+
                 MenuItems.Clear();
                 ListMenuItems = await LoadFromAPI();
-                var menuitems = ListMenuItems;    // This will be where I add the list of menuItems from the api
+                var menuitems = ListMenuItems;    // Add the list of menuItems from the api
                 foreach (var menuitem in menuitems)
                 {
                     MenuItems.Add(menuitem);
