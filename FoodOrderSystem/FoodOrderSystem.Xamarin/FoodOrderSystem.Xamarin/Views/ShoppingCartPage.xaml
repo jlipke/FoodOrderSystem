@@ -23,7 +23,7 @@
     </ContentPage.Resources>
 
 
-    <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+    <StackLayout Orientation="Vertical" Padding="16,10,16,40" Spacing="10">
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -45,14 +45,13 @@
 
                                 <Label Text="{Binding ItemName}" 
                                 LineBreakMode="NoWrap" 
-                                
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
                                 <Label Text= "{Binding Price}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
-                                <!--<Button Text="Delete" />-->
+                                
                                 <!--Clicked="Delete_Clicked"--> 
                             <!--</Grid>-->
                         </StackLayout>
@@ -60,6 +59,23 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Subtotal: "/>
+            <Label x:Name="lblSubtotal" Text="{Binding SubTotal}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Tax: "/>
+            <Label x:Name="lblTax" Text="{Binding Tax}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Total: "/>
+            <Label x:Name="lblTotal" Text="{Binding Total}"/>
+        </StackLayout>
+        
+        <Button Text="Complete Order" 
+                VerticalOptions="End"
+                BackgroundColor="CadetBlue"
+                TextColor="White"/>
 
     </StackLayout>
 

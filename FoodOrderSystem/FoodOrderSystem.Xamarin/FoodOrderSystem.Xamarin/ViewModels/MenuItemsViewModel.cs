@@ -18,7 +18,6 @@ namespace FoodOrderSystem.Xamarin.ViewModels
         public ObservableCollection<MenuItem> MenuItems { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command GoToAccountSettingsCommand { get; set; }
-        public static string Name { get; set; }
         public List<MenuItem> ListMenuItems;
 
         public MenuItemsViewModel()

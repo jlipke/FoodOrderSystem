@@ -13,8 +13,9 @@ namespace FoodOrderSystem.Xamarin
         public static bool IsUserLoggedIn { get; set; }
         public static User LoggedInUser { get; set; }
         //public Order userCart { get; set; }
-        public static List<MenuItem> userCart = new List<MenuItem>();
-       
+        //public static List<MenuItem> userCart = new List<MenuItem>();
+        public static ShoppingCart userCart = new ShoppingCart();
+
 
         public App()
         {

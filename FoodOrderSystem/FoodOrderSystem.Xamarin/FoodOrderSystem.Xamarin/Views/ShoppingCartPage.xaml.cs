@@ -17,20 +17,19 @@ namespace FoodOrderSystem.Xamarin.Views
             InitializeComponent();
             BindingContext = viewModel = new ShoppingCartViewModel();
             BindingContext = menuVM = new MenuItemsViewModel();
+
+            lblSubtotal.Text = App.userCart.Subtotal.ToString();
+
         }
 
-        async void CreateAccountClick(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CreateAccountPage());
-        }
-
+        
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as MenuItem;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new MenuItemDetailPage(new MenuItemDetailViewModel(item)));
+            await Navigation.PushAsync(new UserCartItemDetailPage(new UserCartItemDetailViewModel(item)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -42,16 +41,15 @@ namespace FoodOrderSystem.Xamarin.Views
 
             viewModel.LoadItemsCommand.Execute(null);
             ItemsListView.ItemsSource = viewModel.CartItems;
+            lblSubtotal.Text = App.userCart.Subtotal.ToString();
+            lblTax.Text = App.userCart.TaxCost.ToString();
+            lblTotal.Text = App.userCart.Total.ToString();
+
 
 
 
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
+        
         //private async void ShoppingCartClicked(object sender, EventArgs e)
         //{
         //    try
