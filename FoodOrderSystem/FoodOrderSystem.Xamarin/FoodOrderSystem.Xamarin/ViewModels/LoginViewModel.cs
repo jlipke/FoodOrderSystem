@@ -41,11 +41,21 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
                 // Http Get
 
-                var response = await client.GetStringAsync("http://jwfoodordersystem.azurewebsites.net/api/Login?Email=" + email + "&Password=" + password);
-                var item = JsonConvert.DeserializeObject<User>(response);
+                try
+                {
+                    var response = await client.GetStringAsync("http://jwfoodordersystem.azurewebsites.net/api/Login?Email=" + email + "&Password=" + password);
+                    var item = JsonConvert.DeserializeObject<User>(response);
 
-                // Return user
-                return item;
+                    // Return user
+                    return item;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+
+                
             }
             catch (Exception ex)
             {

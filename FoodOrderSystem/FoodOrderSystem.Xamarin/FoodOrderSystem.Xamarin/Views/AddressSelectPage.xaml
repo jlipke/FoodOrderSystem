@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodOrderSystem.Xamarin.Views.ShoppingCartPage"
+             x:Class="FoodOrderSystem.Xamarin.Views.AddressSelectPage"
              xmlns:vm="clr-namespace:FoodOrderSystem.Xamarin.ViewModels"
              Title="{Binding Title}">
 
@@ -10,7 +10,7 @@
     </ContentPage.ToolbarItems>-->
 
     <ContentPage.BindingContext>
-        <vm:ShoppingCartViewModel />
+        <vm:AddressSelectViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -24,59 +24,50 @@
 
 
     <StackLayout Orientation="Vertical" Padding="16,10,16,40" Spacing="10">
-        <ListView x:Name="ItemsListView"
+        <Label Text="Choose an Address" />
+        <ListView x:Name="AddressListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                RefreshCommand="{Binding LoadItemsCommand}"
+                RefreshCommand="{Binding LoadAddressCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
-                ItemSelected="OnItemSelected">
+                ItemSelected="OnAddressSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
-                            <!--<Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="1*" />
-                                </Grid.ColumnDefinitions>-->
+                           
 
-                                <Label Text="{Binding ItemName}" 
+                                <Label Text="{Binding Address}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                                <Label Text= "{Binding Price}" 
+                                FontSize="13" />
+                                <Label Text= "{Binding City}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
-                                
-                                <!--Clicked="Delete_Clicked"--> 
-                            <!--</Grid>-->
+                                <Label Text= "{Binding State}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                <Label Text= "{Binding ZipCode}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Subtotal: "/>
-            <Label x:Name="lblSubtotal" Text="{Binding SubTotal}"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Tax: "/>
-            <Label x:Name="lblTax" Text="{Binding Tax}"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Total: "/>
-            <Label x:Name="lblTotal" Text="{Binding Total}"/>
-        </StackLayout>
-        
-        <Button Text="Complete Order" 
+
+        <!--<Button Text="Add an Address" 
                 VerticalOptions="End"
                 BackgroundColor="CadetBlue"
                 TextColor="White"
-                Clicked="CompleteOrder_Clicked"/>
+                Clicked=""/>-->
 
     </StackLayout>
 

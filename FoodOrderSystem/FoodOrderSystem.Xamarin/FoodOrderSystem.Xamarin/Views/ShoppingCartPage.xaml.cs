@@ -41,52 +41,17 @@ namespace FoodOrderSystem.Xamarin.Views
 
             viewModel.LoadItemsCommand.Execute(null);
             ItemsListView.ItemsSource = viewModel.CartItems;
+
             lblSubtotal.Text = App.userCart.Subtotal.ToString();
             lblTax.Text = App.userCart.TaxCost.ToString();
             lblTotal.Text = App.userCart.Total.ToString();
-
-
-
+            
 
         }
-        
-        //private async void ShoppingCartClicked(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if(txtEmail.Text == null || txtPassword.Text == null)
-        //        {
-        //            await DisplayAlert("Alert", "Please fill all of your information", "Ok");
-        //        }
-        //        else
-        //        {
-        //            string email = txtEmail.Text;
-        //            string password = txtPassword.Text;
 
-        //            App.LoggedInUser = await viewModel.LogIn(email, password);
-
-        //            if (App.LoggedInUser != null)
-        //            {
-        //                App.IsUserLoggedIn = true;
-        //                await DisplayAlert("ShoppingCart Successful", "Welcome, " + App.LoggedInUser.FirstName, "Ok");
-        //                await Navigation.PopAsync();
-
-
-        //            }
-
-        //            else
-        //            {
-        //                await DisplayAlert("Alert", "Incorrect ShoppingCart information ", "Ok");
-        //            }
-
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw ex;
-        //    }
-        //}
+        private void CompleteOrder_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddressSelectPage());
+        }
     }
 }
