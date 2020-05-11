@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\SubmitOrderPage.xaml.cs">
+      <DependentUpon>SubmitOrderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\PaymethodSelectPage.xaml.cs">
       <DependentUpon>PaymethodSelectPage.xaml</DependentUpon>
     </Compile>
