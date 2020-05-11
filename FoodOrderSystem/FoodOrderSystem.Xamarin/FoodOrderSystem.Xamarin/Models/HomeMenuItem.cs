@@ -8,7 +8,6 @@ namespace FoodOrderSystem.Xamarin.Models
     {
         Menu,
         ShoppingCart,
-        Login,
         AccountDetails
     }
     public class HomeMenuItem

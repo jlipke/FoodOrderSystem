@@ -16,8 +16,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\SubmitOrderPage.xaml.cs">
+      <DependentUpon>SubmitOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PaymethodSelectPage.xaml.cs">
+      <DependentUpon>PaymethodSelectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\CreateAccountPage.xaml.cs">
       <DependentUpon>CreateAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddressSelectPage.xaml.cs">
+      <DependentUpon>AddressSelectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserCartItemDetailPage.xaml.cs">
+      <DependentUpon>UserCartItemDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ShoppingCartPage.xaml.cs">
+      <DependentUpon>ShoppingCartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\LogOutPage.xaml.cs">
+      <DependentUpon>LogOutPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>

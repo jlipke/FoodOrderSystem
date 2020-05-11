@@ -17,28 +17,34 @@ namespace FoodOrderSystem.Xamarin.ViewModels
     {
         public ObservableCollection<MenuItem> MenuItems { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command GoToAccountSettingsCommand { get; set; }
         public List<MenuItem> ListMenuItems;
+
         public MenuItemsViewModel()
         {
             Title = "Menu";
             MenuItems = new ObservableCollection<MenuItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            //GoToAccountSettingsCommand = new Command(async () => await ExecuteGoToAccountSettings());
             
         }
 
         public async Task<List<MenuItem>> LoadFromAPI()
         {
             // Create apiUrl to distinguish between Android and iOS users
-            string apiUrl = null;
-            if (Device.RuntimePlatform == Device.Android)
-                apiUrl = "http://10.0.2.2:62568/api/MenuItem";
-            else if (Device.RuntimePlatform == Device.iOS)
-                apiUrl = "http://localhost:62568/api/MenuItem";
+            // This was used to connect to localhost api. Android needed a redirect with Jexus Manager because the 
+            // Android Emulator doesn't understand 'localhost' and needs to be told '127.0.0.1'
+
+            //string apiUrl = null;
+            //if (Device.RuntimePlatform == Device.Android)
+            //    apiUrl = "http://10.0.2.2:62568/api/MenuItem";
+            //else if (Device.RuntimePlatform == Device.iOS)
+            //    apiUrl = "http://localhost:62568/api/MenuItem";
            
 
             // Create HttpClient
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync(apiUrl);
+            var response = await client.GetStringAsync("http://jwfoodordersystem.azurewebsites.net/api/MenuItem");
             var items = JsonConvert.DeserializeObject<List<MenuItem>>(response);
             
             // Populate the List of Items
@@ -46,7 +52,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
 
         }
-
+        
         async Task ExecuteLoadItemsCommand()    // Will load the items in this section
         {
             if (IsBusy)
@@ -56,9 +62,11 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
             try
             {
+                
+
                 MenuItems.Clear();
                 ListMenuItems = await LoadFromAPI();
-                var menuitems = ListMenuItems;    // This will be where I add the list of menuItems from the api
+                var menuitems = ListMenuItems;    // Add the list of menuItems from the api
                 foreach (var menuitem in menuitems)
                 {
                     MenuItems.Add(menuitem);

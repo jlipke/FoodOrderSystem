@@ -14,5 +14,7 @@ namespace FoodOrderSystem.Xamarin.Models
         public string Password { get; set; }
         public List<UserAddress> Addresses { get; set; }
         public List<UserPayment> Payments { get; set; }
+        public Guid SelectedAddressId { get; set; }
+        public Guid SelectedPaymentId { get; set; }
     }
 }

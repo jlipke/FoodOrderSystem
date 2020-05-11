@@ -11,10 +11,12 @@ namespace FoodOrderSystem.Xamarin.Views
     public partial class LoginPage : ContentPage
     {
         LoginViewModel viewModel;
+        MenuItemsViewModel menuVM;
         public LoginPage()
         {
             InitializeComponent();
             BindingContext = viewModel = new LoginViewModel();
+            BindingContext = menuVM = new MenuItemsViewModel();
         }
 
         async void CreateAccountClick(object sender, EventArgs e)
@@ -35,12 +37,21 @@ namespace FoodOrderSystem.Xamarin.Views
                     string email = txtEmail.Text;
                     string password = txtPassword.Text;
 
-                    User loggedinuser = await viewModel.LogIn(email, password);
+                    App.LoggedInUser = await viewModel.LogIn(email, password);
 
-                    if(loggedinuser != null)
-                        await DisplayAlert("Alert", "Welcome, " + loggedinuser.FirstName, "Ok");
+                    if (App.LoggedInUser != null)
+                    {
+                        App.IsUserLoggedIn = true;
+                        await DisplayAlert("Login Successful", "Welcome, " + App.LoggedInUser.FirstName, "Ok");
+                        await Navigation.PopAsync();
+
+
+                    }
+
                     else
+                    {
                         await DisplayAlert("Alert", "Incorrect Login information ", "Ok");
+                    }
 
                 }
                 

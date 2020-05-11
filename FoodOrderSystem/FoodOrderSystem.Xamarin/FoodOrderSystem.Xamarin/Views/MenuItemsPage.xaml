@@ -4,17 +4,18 @@
              x:Class="FoodOrderSystem.Xamarin.Views.MenuItemsPage"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="add.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="tbLogIn" Text="Login/out" Clicked="TbLogin_Clicked">
+            
         </ToolbarItem>
-    </ContentPage.ToolbarItems>-->
+    </ContentPage.ToolbarItems>
 
     <StackLayout>
+        <!--<Label Text="Welcome, Joseph" HorizontalTextAlignment="End" FontSize="Small"
+               <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToAccountSettingsCommand}" />
+            </Label.GestureRecognizers>
+        </Label>-->
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -33,7 +34,7 @@
                                 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-                            <Label Text="{Binding Price}" 
+                            <Label Text= "{Binding Price}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />

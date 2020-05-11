@@ -16,14 +16,19 @@ namespace FoodOrderSystem.Xamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuItemsPage : ContentPage
     {
+        
         MenuItemsViewModel viewModel;
 
         public MenuItemsPage()
         {
             InitializeComponent();
-
+            
             BindingContext = viewModel = new MenuItemsViewModel();
+
+            
+            
         }
+
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
@@ -37,20 +42,34 @@ namespace FoodOrderSystem.Xamarin.Views
             ItemsListView.SelectedItem = null;
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
-        }
+
+        //async void AddItem_Clicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+        //}
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            //if (viewModel.MenuItems.Count == 0)
-            //    viewModel.LoadItemsCommand.Execute(null);
-            //else
+            
             viewModel.LoadItemsCommand.Execute(null);
             ItemsListView.ItemsSource = viewModel.MenuItems;
+            
+            
+
+        }
+
+        private async void TbLogin_Clicked(object sender, EventArgs e)
+        {
+            if (App.IsUserLoggedIn == false)
+            {
+                await Navigation.PushAsync(new LoginPage());
+            }
+            else
+            {
+                await Navigation.PushAsync(new LogOutPage());
+            }
+
         }
     }
 }

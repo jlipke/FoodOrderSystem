@@ -16,5 +16,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Label x:Name="lblName" Text="{Binding Name}"/>
     </StackLayout>
 </ContentPage>
