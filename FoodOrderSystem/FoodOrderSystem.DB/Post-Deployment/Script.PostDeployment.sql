@@ -12,8 +12,8 @@ Post-Deployment Script Template
 
 :r .\DefaultData\MenuItems.sql
 :r .\DefaultData\Users.sql
+:r .\DefaultData\States.sql
 :r .\DefaultData\UserAddresses.sql
 :r .\DefaultData\UserPayments.sql
 :r .\DefaultData\Orders.sql
 :r .\DefaultData\OrderItems.sql
-:r .\DefaultData\States.sql

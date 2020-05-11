@@ -79,6 +79,7 @@
     <Build Include="Tables\tblUserPayment.sql" />
     <Build Include="StoredProcedures\spCreateUser.sql" />
     <Build Include="Tables\tblState.sql" />
+    <Build Include="ForeignKeys\Address_StateId.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="FoodOrderSystem.DB.refactorlog" />
