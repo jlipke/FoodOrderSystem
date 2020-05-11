@@ -24,15 +24,19 @@ namespace FoodOrderSystem.WPF
     {
         UserAddress address;
         List<State> states;
+        Guid userId;
 
-        public AddressWindow()
+        // For New Address
+        public AddressWindow(Guid userid)
         {
-            address = new UserAddress();
+            userId = userid;
             InitializeComponent();
         }
-        public AddressWindow(Guid addressid)
+
+        // For Existing Address
+        public AddressWindow(Guid addressid, Guid userid)
         {
-            address = UserAddressManager.LoadById(addressid);
+            address = UserAddressManager.LoadByUserAndAddressId(addressid, userid);
 
             InitializeComponent();
 
@@ -49,20 +53,23 @@ namespace FoodOrderSystem.WPF
 
         }
 
+        // Reloads states combobox
         private void Reload()
         {
             cboState.ItemsSource = null;
             states = UserAddressManager.LoadStates();
             cboState.ItemsSource = states;
         }
-
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (txtAddress.Text != "" &&
+                txtCity.Text != "" &&
+                txtZip.Text != "")
             {
                 address = new UserAddress()
                 {
                     Id = Guid.Empty,
+                    UserId = userId,
                     Address = txtAddress.Text,
                     City = txtCity.Text,
                     State = "WI",
@@ -70,39 +77,52 @@ namespace FoodOrderSystem.WPF
                 };
 
                 bool result = UserAddressManager.Insert(address);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
+                if (result)
+                {
+                    MessageBox.Show("Address added.");
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("An error occurred when inserting.");
+            }
+            else
+                MessageBox.Show("Error. Please enter data into the fields.");
+        }
         private void btnUpdate_Click(object sender,  RoutedEventArgs e)
         {
-            try
+            if (txtAddress.Text != "" &&
+                txtCity.Text != "" &&
+                txtZip.Text != "")
             {
                 address.Address = txtAddress.Text;
                 address.City = txtCity.Text;
                 address.ZipCode = txtZip.Text;
 
                 int result = UserAddressManager.Update(address);
+                
+                if (result >= 1)
+                {
+                    MessageBox.Show("Address updated.");
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("An error occurred when updating.");
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            else
+                MessageBox.Show("Error. Please enter data into the fields.");
         }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            try
+            int result = UserAddressManager.Delete(address.Id);
+            
+            if (result >= 1)
             {
-                int result = UserAddressManager.Delete(address.Id);
+                MessageBox.Show("Address deleted.");
+                this.Close();
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            else
+                MessageBox.Show("An error occurred when deleting.");
         }
     }
 }

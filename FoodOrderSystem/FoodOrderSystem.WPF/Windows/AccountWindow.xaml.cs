@@ -25,7 +25,8 @@ namespace FoodOrderSystem.WPF
         List<UserAddress> addresses;
         List<UserPayment> payments;
         User user;
-        public AccountWindow()
+
+        /*public AccountWindow()
         {
             List<User> users = UserManager.Load();
             user = users.FirstOrDefault(u => u.Email == "lewandowski.william@gmail.com");
@@ -39,7 +40,7 @@ namespace FoodOrderSystem.WPF
             txtPassword.Password = user.Password;
 
             DrawScreen();
-        }
+        }*/
         public AccountWindow(Guid userid)
         {
             user = UserManager.LoadById(userid);
@@ -99,13 +100,22 @@ namespace FoodOrderSystem.WPF
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Would you like to create a new Address?", 
+                "", MessageBoxButton.YesNoCancel);
 
+            if (result == MessageBoxResult.Yes)
+                new AddressWindow(user.Id).ShowDialog();
+            else if (result == MessageBoxResult.No)
+                new PaymentWindow(user.Id).ShowDialog();
+            else
+                this.Close();
+            
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             if (dgvAddressInfo.SelectedIndex > -1)
             {
-                new AddressWindow(addresses[dgvAddressInfo.SelectedIndex].Id).ShowDialog();
+                new AddressWindow(addresses[dgvAddressInfo.SelectedIndex].Id, user.Id).ShowDialog();
                 RefreshScreen();
             }
             else if (dgvPaymentInfo.SelectedIndex > -1)

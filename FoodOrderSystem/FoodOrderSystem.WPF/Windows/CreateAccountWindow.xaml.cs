@@ -23,6 +23,9 @@ namespace FoodOrderSystem.WPF
     public partial class CreateAccountWindow : Window
     {
         List<State> states;
+        User user;
+        UserPayment payment;
+        UserAddress address;
 
         public CreateAccountWindow()
         {
@@ -45,7 +48,7 @@ namespace FoodOrderSystem.WPF
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User()
+            user = new User()
             {
                 Id = Guid.Empty,
                 FirstName = txtFirstName.Text,
@@ -57,9 +60,9 @@ namespace FoodOrderSystem.WPF
 
             int result = UserManager.Insert(user);
 
-            if (result >= 0)
+            if (result >= 1)
             {
-                UserPayment payment = new UserPayment()
+                payment = new UserPayment()
                 { 
                     Id = Guid.Empty,
                     UserId = user.Id,
@@ -69,15 +72,17 @@ namespace FoodOrderSystem.WPF
                     CVC = txtCVC.Text
                 };
 
-                UserAddress address = new UserAddress()
+                address = new UserAddress()
                 {
                     Id = Guid.Empty,
                     UserId = user.Id,
                     Address = txtAddress.Text,
                     City = txtCity.Text,
-                    State = cboState.DisplayMemberPath,
+                    State = cboState.SelectedValuePath,
                     ZipCode = txtZip.Text
                 };
+
+                Guid id = user.Id;
 
                 bool paymentresult = UserPaymentManager.Insert(payment);
                 bool addressresult = UserAddressManager.Insert(address);

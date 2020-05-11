@@ -128,6 +128,8 @@ namespace FoodOrderSystem.BL
                     newrow.Email = user.Email;
                     newrow.Password = user.Password;
 
+                    user.Id = newrow.Id;
+
                     // Do the Insert
                     dc.tblUsers.Add(newrow);
 
