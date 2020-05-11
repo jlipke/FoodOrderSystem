@@ -149,9 +149,7 @@ namespace FoodOrderSystem.BL
                     dc.tblUserAddresses.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)
@@ -182,9 +180,7 @@ namespace FoodOrderSystem.BL
                     dc.tblUserAddresses.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)

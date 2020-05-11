@@ -126,15 +126,13 @@ namespace FoodOrderSystem.BL
                     dc.tblUserPayments.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    
+                    return Convert.ToBoolean(dc.SaveChanges()); 
                 }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                return false;
             }
         }
 
@@ -159,9 +157,7 @@ namespace FoodOrderSystem.BL
                     dc.tblUserPayments.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)

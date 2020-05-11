@@ -117,6 +117,37 @@ namespace FoodOrderSystem.BL
             {
                 using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
                 {
+                    // Make a new row
+                    tblUser newrow = new tblUser();
+
+                    // Set the properties
+                    newrow.Id = Guid.NewGuid();
+                    newrow.FirstName = user.FirstName;
+                    newrow.LastName = user.LastName;
+                    newrow.Phone = user.Phone;
+                    newrow.Email = user.Email;
+                    newrow.Password = user.Password;
+
+                    // Do the Insert
+                    dc.tblUsers.Add(newrow);
+
+                    // Commit the insert
+
+                    return dc.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public static int InsertSP(User user)
+        {
+            try
+            {
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                {
 
                     // TODO: Hash the password when it is getting inserted. May hash it at the user level 
                     var result = dc.spCreateUser(user.FirstName, user.LastName, user.Email, user.Phone, user.Password);
@@ -132,7 +163,7 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static int Insert(string firstName, string lastName, string email, string phone, string password)
+        public static int InsertSP(string firstName, string lastName, string email, string phone, string password)
         {
             try
             {
@@ -150,7 +181,7 @@ namespace FoodOrderSystem.BL
                 throw ex;
             }
         }
-
+        
         public static int Update(Guid id, string firstName, string lastName, string email, string phone, string password)
         {
             try
