@@ -55,7 +55,7 @@ namespace FoodOrderSystem.WPF
                 LastName = txtLastName.Text,
                 Email = txtEmail.Text,
                 Phone = txtPhone.Text,
-                Password = txtPassword.Text
+                Password = txtPassword.Password
             };
 
             int result = UserManager.Insert(user);
