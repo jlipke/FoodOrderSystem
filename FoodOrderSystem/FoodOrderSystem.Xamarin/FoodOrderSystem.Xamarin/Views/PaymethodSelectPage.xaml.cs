@@ -1,7 +1,7 @@
 ﻿using FoodOrderSystem.Xamarin.Models;
 using FoodOrderSystem.Xamarin.ViewModels;
 using System;
-
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,18 +22,18 @@ namespace FoodOrderSystem.Xamarin.Views
         }
 
         
-        async void OnPaymethodSelected(object sender, SelectedItemChangedEventArgs args)
-        {
-            var item = args.SelectedItem as UserAddress;
-            if (item == null)
-                return;
+        //async void OnPaymethodSelected(object sender, SelectedItemChangedEventArgs args)
+        //{
+        //    var item = args.SelectedItem as UserAddress;
+        //    if (item == null)
+        //        return;
 
-            item.Id = App.LoggedInUser.SelectedPaymentId;
-            //await Navigation.PushAsync(new UserCartItemDetailPage(new UserCartItemDetailViewModel(item)));
+        //    item.Id = App.LoggedInUser.SelectedPaymentId;
+        //    await Navigation.PushAsync(new SubmitOrderPage());
 
-            // Manually deselect item.
-            PaymethodListView.SelectedItem = null;
-        }
+        //    // Manually deselect item.
+        //    PaymethodListView.SelectedItem = null;
+        //}
 
         protected override void OnAppearing()
         {
@@ -56,7 +56,19 @@ namespace FoodOrderSystem.Xamarin.Views
 
 
         }
-        
-        
+
+        async void OnPaymethodSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var item = args.SelectedItem as UserPayment;
+            if (item == null)
+                return;
+
+            item.Id = App.LoggedInUser.SelectedPaymentId;
+            item = App.LoggedInUser.SelectedPaymethod.First();
+            await Navigation.PushAsync(new SubmitOrderPage());
+
+            // Manually deselect item.
+            PaymethodListView.SelectedItem = null;
+        }
     }
 }

@@ -16,23 +16,27 @@ namespace FoodOrderSystem.Xamarin.ViewModels
     public class SubmitOrderViewModel : BaseViewModel
     {
         public ObservableCollection<UserAddress> AddressItems { get; set; }
+        public ObservableCollection<UserPayment> PaymentItems { get; set; }
 
-        public Command LoadAddressCommand { get; set; }
+        public Command LoadAddressPaymentsCommand { get; set; }
 
         public List<UserAddress> ListAddressItems { get; set; }
+        public List<UserPayment> ListPaymentItems { get; set; }
+
 
 
 
         public SubmitOrderViewModel()
         {
-            Title = "Address";
+            Title = "Complete Order";
             AddressItems = new ObservableCollection<UserAddress>();
+            PaymentItems = new ObservableCollection<UserPayment>();
 
-            LoadAddressCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadAddressPaymentsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
         }
 
-       
+
 
         async Task ExecuteLoadItemsCommand()    // Will load the items in this section
         {
@@ -44,14 +48,22 @@ namespace FoodOrderSystem.Xamarin.ViewModels
             try
             {
 
-                    AddressItems.Clear();
-                    ListAddressItems = App.LoggedInUser.Addresses;
-                    var addressitems = ListAddressItems;    // Add the list of menuItems from the userCart
-                    foreach (var address in addressitems)
-                    {
-                        AddressItems.Add(address);
-                    } 
-              
+                AddressItems.Clear();
+                ListAddressItems = App.LoggedInUser.Addresses;
+                var addressitems = ListAddressItems;    // Add the list of menuItems from the userCart
+                foreach (var address in addressitems)
+                {
+                    AddressItems.Add(address);
+                }
+
+                PaymentItems.Clear();   // Get Paymethods from the Logged in user
+                ListPaymentItems = App.LoggedInUser.Payments;
+                var paymentitems = ListPaymentItems;
+                foreach (var paymethod in paymentitems)
+                {
+                    PaymentItems.Add(paymethod);
+                }
+
 
             }
             catch (Exception ex)
@@ -64,6 +76,6 @@ namespace FoodOrderSystem.Xamarin.ViewModels
             }
         }
 
-        
+
     }
 }

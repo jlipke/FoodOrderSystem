@@ -29,7 +29,42 @@ namespace FoodOrderSystem.Xamarin.Views
                 return;
 
             item.Id = App.LoggedInUser.SelectedAddressId;
-            await Navigation.PushAsync(new PaymethodSelectPage());
+
+            var action = await DisplayAlert("Alert", "Would you like to change the selected Address?", "Yes", "No");
+            if (action)
+            {
+                App.LoggedInUser.SelectedAddress.Clear();
+                await Navigation.PopAsync();
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                return;
+            }
+
+            
+            // Manually deselect item.
+            AddressListView.SelectedItem = null;
+        }
+
+        async void OnPaymethodSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var item = args.SelectedItem as UserPayment;
+            if (item == null)
+                return;
+
+            item.Id = App.LoggedInUser.SelectedPaymentId;
+
+            var action = await DisplayAlert("Alert", "Would you like to change the selected Pay Method?", "Yes", "No");
+            if (action)
+            {
+                App.LoggedInUser.SelectedPaymethod.Clear();
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                return;
+            }
 
             // Manually deselect item.
             AddressListView.SelectedItem = null;
@@ -39,11 +74,11 @@ namespace FoodOrderSystem.Xamarin.Views
         {
             base.OnAppearing();
 
-            viewModel.LoadAddressCommand.Execute(null);
+            //viewModel.LoadAddressPaymentsCommand.Execute(null);
 
-            AddressListView.ItemsSource = viewModel.AddressItems;
-           // PaymentListView.ItemsSource = viewModel.PaymentItems;
-           
+            AddressListView.ItemsSource = App.LoggedInUser.SelectedAddress;
+            PaymethodListView.ItemsSource = App.LoggedInUser.SelectedPaymethod;
+
 
 
 

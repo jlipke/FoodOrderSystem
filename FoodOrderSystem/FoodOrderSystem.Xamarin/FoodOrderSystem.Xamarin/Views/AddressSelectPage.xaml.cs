@@ -1,7 +1,7 @@
 ﻿using FoodOrderSystem.Xamarin.Models;
 using FoodOrderSystem.Xamarin.ViewModels;
 using System;
-
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,6 +29,7 @@ namespace FoodOrderSystem.Xamarin.Views
                 return;
 
             item.Id = App.LoggedInUser.SelectedAddressId;
+            item = App.LoggedInUser.SelectedAddress.First();
             await Navigation.PushAsync(new PaymethodSelectPage());
 
             // Manually deselect item.
