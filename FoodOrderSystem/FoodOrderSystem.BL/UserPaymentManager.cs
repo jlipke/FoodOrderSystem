@@ -14,7 +14,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     List<UserPayment> results = new List<UserPayment>();
                     dc.tblUserPayments.ToList().ForEach(p => results.Add(new UserPayment
@@ -42,7 +42,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserPayment UserPaymentRow = dc.tblUserPayments.FirstOrDefault(a => a.Id == id);
 
@@ -56,6 +56,7 @@ namespace FoodOrderSystem.BL
                             CardNumber = UserPaymentRow.CardNumber,
                             ExpirationDate = UserPaymentRow.ExpirationDate,
                             CVC = UserPaymentRow.CVC
+                            
 
                         };
                     }
@@ -77,7 +78,7 @@ namespace FoodOrderSystem.BL
             try
             {
                     List<UserPayment> payMethods = new List<UserPayment>();
-                    using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                    using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                     {
                         tblUser row = dc.tblUsers.FirstOrDefault(a => a.Id == userid);
 
@@ -109,7 +110,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblUserPayment newrow = new tblUserPayment();
@@ -142,7 +143,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblUserPayment newrow = new tblUserPayment();
@@ -175,7 +176,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserPayment updatedrow = dc.tblUserPayments.FirstOrDefault(a => a.Id == id);
 
@@ -206,7 +207,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserPayment updatedrow = dc.tblUserPayments.FirstOrDefault(a => a.Id == userPayment.Id);
 
@@ -238,7 +239,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserPayment deletedrow = dc.tblUserPayments.FirstOrDefault(a => a.Id == id);
 

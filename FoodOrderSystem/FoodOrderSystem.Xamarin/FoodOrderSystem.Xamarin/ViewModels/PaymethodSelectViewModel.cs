@@ -15,13 +15,11 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 {
     public class PaymethodSelectViewModel : BaseViewModel
     {
-        public ObservableCollection<UserAddress> AddressItems { get; set; }
+        
         public ObservableCollection<UserPayment> PaymentItems { get; set; }
 
         public Command LoadPaymethodCommand { get; set; }
-        public Command LoadPaymentCommand { get; set; }
-
-        public List<UserAddress> ListAddressItems { get; set; }
+        
         public List<UserPayment> ListPaymentItems { get; set; }
 
 
@@ -29,7 +27,6 @@ namespace FoodOrderSystem.Xamarin.ViewModels
         public PaymethodSelectViewModel()
         {
             Title = "PayMethod";
-            AddressItems = new ObservableCollection<UserAddress>();
             PaymentItems = new ObservableCollection<UserPayment>();
 
             LoadPaymethodCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -47,6 +44,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
             try
             {
+                    
                     PaymentItems.Clear();   // Get Paymethods from the Logged in user
                     ListPaymentItems = App.LoggedInUser.Payments;
                     var paymentitems = ListPaymentItems;    

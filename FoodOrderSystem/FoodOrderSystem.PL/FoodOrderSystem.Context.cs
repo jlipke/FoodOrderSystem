@@ -15,10 +15,10 @@ namespace FoodOrderSystem.PL
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class AzureFoodOrderSystemEntities : DbContext
+    public partial class FoodOrderSystemEntities : DbContext
     {
-        public AzureFoodOrderSystemEntities()
-            : base("name=AzureFoodOrderSystemEntities")
+        public FoodOrderSystemEntities()
+            : base("name=FoodOrderSystemEntities")
         {
         }
     
@@ -31,11 +31,11 @@ namespace FoodOrderSystem.PL
         public virtual DbSet<tblMenuItem> tblMenuItems { get; set; }
         public virtual DbSet<tblOrder> tblOrders { get; set; }
         public virtual DbSet<tblOrderItem> tblOrderItems { get; set; }
+        public virtual DbSet<tblState> tblStates { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblUserAddress> tblUserAddresses { get; set; }
         public virtual DbSet<tblUserPayment> tblUserPayments { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
-        public virtual DbSet<tblState> tblStates { get; set; }
     
         public virtual int spCreateUser(string firstName, string lastName, string email, string phone, string password)
         {

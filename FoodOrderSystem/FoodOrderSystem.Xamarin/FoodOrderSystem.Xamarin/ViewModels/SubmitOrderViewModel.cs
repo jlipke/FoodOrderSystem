@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace FoodOrderSystem.Xamarin.ViewModels
 {
-    public class AddressSelectViewModel : BaseViewModel
+    public class SubmitOrderViewModel : BaseViewModel
     {
         public ObservableCollection<UserAddress> AddressItems { get; set; }
 
@@ -23,7 +23,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
 
 
-        public AddressSelectViewModel()
+        public SubmitOrderViewModel()
         {
             Title = "Address";
             AddressItems = new ObservableCollection<UserAddress>();

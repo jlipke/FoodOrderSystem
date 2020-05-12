@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FoodOrderSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="lipkedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -41,7 +41,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Abbreviation" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUser">
@@ -63,7 +64,7 @@
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="State" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
           <Property Name="ZipCode" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUserPayment">
@@ -95,6 +96,18 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
           <Property Name="create_date" Type="datetime" Nullable="false" />
           <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="Address_StateId">
+          <End Role="tblState" Type="Self.tblState" Multiplicity="1" />
+          <End Role="tblUserAddress" Type="Self.tblUserAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUserAddress">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Order_AddressId">
           <End Role="tblUserAddress" Type="Self.tblUserAddress" Multiplicity="1" />
           <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
@@ -186,7 +199,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
           <Parameter Name="Phone" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="FoodOrderSystemModelStoreContainer">
+        <EntityContainer Name="lipkedbModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMenuItem" EntityType="Self.tblMenuItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
@@ -205,6 +218,10 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
     [database_firewall_rules].[modify_date] AS [modify_date]
     FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="Address_StateId" Association="Self.Address_StateId">
+            <End Role="tblState" EntitySet="tblState" />
+            <End Role="tblUserAddress" EntitySet="tblUserAddress" />
+          </AssociationSet>
           <AssociationSet Name="Order_AddressId" Association="Self.Order_AddressId">
             <End Role="tblUserAddress" EntitySet="tblUserAddress" />
             <End Role="tblOrder" EntitySet="tblOrder" />
@@ -234,10 +251,11 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             <End Role="tblUserPayment" EntitySet="tblUserPayment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FoodOrderSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="lipkedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -277,6 +295,15 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
           <NavigationProperty Name="tblMenuItem" Relationship="Self.OrderItem_MenuItemId" FromRole="tblOrderItem" ToRole="tblMenuItem" />
           <NavigationProperty Name="tblOrder" Relationship="Self.OrderItem_OrderId" FromRole="tblOrderItem" ToRole="tblOrder" />
         </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblUserAddresses" Relationship="Self.Address_StateId" FromRole="tblState" ToRole="tblUserAddress" />
+        </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -299,9 +326,10 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
           <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblOrders" Relationship="Self.Order_AddressId" FromRole="tblUserAddress" ToRole="tblOrder" />
+          <NavigationProperty Name="tblState" Relationship="Self.Address_StateId" FromRole="tblUserAddress" ToRole="tblState" />
           <NavigationProperty Name="tblUser" Relationship="Self.UserAddress_UserId" FromRole="tblUserAddress" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblUserPayment">
@@ -393,6 +421,18 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Address_StateId">
+          <End Role="tblState" Type="Self.tblState" Multiplicity="1" />
+          <End Role="tblUserAddress" Type="Self.tblUserAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUserAddress">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="UserAddress_UserId">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblUserAddress" Type="Self.tblUserAddress" Multiplicity="*" />
@@ -417,11 +457,12 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AzureFoodOrderSystemEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FoodOrderSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="tblMenuItems" EntityType="Self.tblMenuItem" />
           <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
           <EntitySet Name="tblOrderItems" EntityType="Self.tblOrderItem" />
+          <EntitySet Name="tblStates" EntityType="Self.tblState" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
           <EntitySet Name="tblUserAddresses" EntityType="Self.tblUserAddress" />
           <EntitySet Name="tblUserPayments" EntityType="Self.tblUserPayment" />
@@ -446,6 +487,10 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             <End Role="tblOrder" EntitySet="tblOrders" />
             <End Role="tblOrderItem" EntitySet="tblOrderItems" />
           </AssociationSet>
+          <AssociationSet Name="Address_StateId" Association="Self.Address_StateId">
+            <End Role="tblState" EntitySet="tblStates" />
+            <End Role="tblUserAddress" EntitySet="tblUserAddresses" />
+          </AssociationSet>
           <AssociationSet Name="UserAddress_UserId" Association="Self.UserAddress_UserId">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblUserAddress" EntitySet="tblUserAddresses" />
@@ -461,30 +506,22 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             <Parameter Name="Phone" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="tblStates" EntityType="FoodOrderSystemModel.tblState" />
         </EntityContainer>
-        <EntityType Name="tblState">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FoodOrderSystemModelStoreContainer" CdmEntityContainer="AzureFoodOrderSystemEntities">
+        <EntityContainerMapping StorageEntityContainer="lipkedbModelStoreContainer" CdmEntityContainer="FoodOrderSystemEntities">
           <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.C__RefactorLog">
+            <EntityTypeMapping TypeName="lipkedbModel.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
                 <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblMenuItems">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblMenuItem">
+            <EntityTypeMapping TypeName="lipkedbModel.tblMenuItem">
               <MappingFragment StoreEntitySet="tblMenuItem">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
@@ -493,7 +530,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrders">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblOrder">
+            <EntityTypeMapping TypeName="lipkedbModel.tblOrder">
               <MappingFragment StoreEntitySet="tblOrder">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -504,7 +541,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrderItems">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblOrderItem">
+            <EntityTypeMapping TypeName="lipkedbModel.tblOrderItem">
               <MappingFragment StoreEntitySet="tblOrderItem">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
@@ -512,8 +549,17 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="lipkedbModel.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblUser">
+            <EntityTypeMapping TypeName="lipkedbModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -525,19 +571,19 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserAddresses">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblUserAddress">
+            <EntityTypeMapping TypeName="lipkedbModel.tblUserAddress">
               <MappingFragment StoreEntitySet="tblUserAddress">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUserPayments">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblUserPayment">
+            <EntityTypeMapping TypeName="lipkedbModel.tblUserPayment">
               <MappingFragment StoreEntitySet="tblUserPayment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -549,7 +595,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="database_firewall_rules">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.database_firewall_rules">
+            <EntityTypeMapping TypeName="lipkedbModel.database_firewall_rules">
               <MappingFragment StoreEntitySet="database_firewall_rules">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -560,15 +606,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spCreateUser" FunctionName="FoodOrderSystemModel.Store.spCreateUser" />
-          <EntitySetMapping Name="tblStates">
-            <EntityTypeMapping TypeName="FoodOrderSystemModel.tblState">
-              <MappingFragment StoreEntitySet="tblState">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCreateUser" FunctionName="lipkedbModel.Store.spCreateUser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

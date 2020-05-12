@@ -24,11 +24,12 @@ namespace FoodOrderSystem.PL
         public System.Guid UserId { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public string State { get; set; }
+        public int StateId { get; set; }
         public string ZipCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrder> tblOrders { get; set; }
+        public virtual tblState tblState { get; set; }
         public virtual tblUser tblUser { get; set; }
     }
 }

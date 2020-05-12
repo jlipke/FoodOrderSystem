@@ -14,7 +14,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     List<UserAddress> results = new List<UserAddress>();
                     dc.tblUserAddresses.ToList().ForEach(p => results.Add(new UserAddress
@@ -23,7 +23,7 @@ namespace FoodOrderSystem.BL
                         UserId = p.UserId,
                         Address = p.Address,
                         City = p.City,
-                        State = p.State,
+                        StateId = p.StateId,
                         ZipCode = p.ZipCode
 
                     }));
@@ -38,33 +38,33 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static List<State> LoadStates()
-        {
-            try
-            {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
-                {
-                    List<State> results = new List<State>();
-                    dc.tblStates.ToList().ForEach(s => results.Add(new State
-                    {
-                        Id = s.Id,
-                        Name = s.Name
-                    }));
+        //public static List<StateId> LoadStateIds()
+        //{
+        //    try
+        //    {
+        //        using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+        //        {
+        //            List<StateId> results = new List<StateId>();
+        //            dc.tblStateIds.ToList().ForEach(s => results.Add(new StateId
+        //            {
+        //                Id = s.Id,
+        //                Name = s.Name
+        //            }));
 
-                    return results;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //            return results;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public static UserAddress LoadById(Guid id)
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserAddress UserAddressRow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == id);
 
@@ -76,7 +76,7 @@ namespace FoodOrderSystem.BL
                             UserId = UserAddressRow.UserId,
                             Address = UserAddressRow.Address,
                             City = UserAddressRow.City,
-                            State = UserAddressRow.State,
+                            StateId = UserAddressRow.StateId,
                             ZipCode = UserAddressRow.ZipCode
 
                         };
@@ -99,7 +99,7 @@ namespace FoodOrderSystem.BL
             try
             {
                 List<UserAddress> addresses = new List<UserAddress>();
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUser row = dc.tblUsers.FirstOrDefault(a => a.Id == userid);
 
@@ -114,7 +114,7 @@ namespace FoodOrderSystem.BL
                         UserId = p.UserId,
                         Address = p.Address,
                         City = p.City,
-                        State = p.State,
+                        StateId = p.StateId,
                         ZipCode = p.ZipCode
 
                     }));
@@ -132,7 +132,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblUserAddress newrow = new tblUserAddress();
@@ -142,7 +142,7 @@ namespace FoodOrderSystem.BL
                     newrow.UserId = userAddress.UserId;
                     newrow.Address = userAddress.Address;
                     newrow.City = userAddress.City;
-                    newrow.State = userAddress.State;
+                    newrow.StateId = userAddress.StateId;
                     newrow.ZipCode = userAddress.ZipCode;
 
                     // Do the Insert
@@ -161,11 +161,11 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static bool Insert(Guid userid, string address, string city, string state, string zipcode)
+        public static bool Insert(Guid userid, string address, string city, int stateId, string zipcode)
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblUserAddress newrow = new tblUserAddress();
@@ -175,7 +175,7 @@ namespace FoodOrderSystem.BL
                     newrow.UserId = userid;
                     newrow.Address = address;
                     newrow.City = city;
-                    newrow.State = state;
+                    newrow.StateId = stateId;
                     newrow.ZipCode = zipcode;
 
                     // Do the Insert
@@ -194,11 +194,11 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static int Update(Guid id, Guid userid, string address, string city, string state, string zipcode)
+        public static int Update(Guid id, Guid userid, string address, string city, int stateId, string zipcode)
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserAddress updatedrow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == id);
 
@@ -207,7 +207,7 @@ namespace FoodOrderSystem.BL
                         updatedrow.UserId = userid;
                         updatedrow.Address = address;
                         updatedrow.City = city;
-                        updatedrow.State = state;
+                        updatedrow.StateId = stateId;
                         updatedrow.ZipCode = zipcode;
 
 
@@ -229,7 +229,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserAddress updatedrow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == userAddress.Id);
 
@@ -238,7 +238,7 @@ namespace FoodOrderSystem.BL
                         updatedrow.UserId = userAddress.UserId;
                         updatedrow.Address = userAddress.Address;
                         updatedrow.City = userAddress.City;
-                        updatedrow.State = userAddress.State;
+                        updatedrow.StateId = userAddress.StateId;
                         updatedrow.ZipCode = userAddress.ZipCode;
 
 
@@ -260,7 +260,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserAddress deletedrow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == id);
 

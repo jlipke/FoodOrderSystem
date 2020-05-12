@@ -19,7 +19,7 @@ namespace FoodOrderSystem.PL.Test
         [TestMethod]
         public void LoadTest()
         {
-            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
                 int expected = 2;
                 var results = dc.tblMenuItems.ToList();
@@ -31,7 +31,7 @@ namespace FoodOrderSystem.PL.Test
         [TestMethod]
         public void InsertTest()
         {
-            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
                 tblMenuItem newrow = new tblMenuItem();
 
@@ -48,7 +48,7 @@ namespace FoodOrderSystem.PL.Test
         [TestMethod]
         public void UpdateTest()
         {
-            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
                 tblMenuItem updatedrow = dc.tblMenuItems.Where(mi => mi.ItemName == "Spaghetti")
                     .FirstOrDefault();
@@ -66,7 +66,7 @@ namespace FoodOrderSystem.PL.Test
         [TestMethod]
         public void DeleteTest()
         {
-            using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+            using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
             {
                 tblMenuItem deletedrow = dc.tblMenuItems.Where(mi => mi.ItemName == "Spaghetti")
                     .FirstOrDefault();

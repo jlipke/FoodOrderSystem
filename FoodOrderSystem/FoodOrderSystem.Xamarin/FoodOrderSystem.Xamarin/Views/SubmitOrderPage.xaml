@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodOrderSystem.Xamarin.Views.PaymethodSelectPage"
+             x:Class="FoodOrderSystem.Xamarin.Views.SubmitOrderPage"
              xmlns:vm="clr-namespace:FoodOrderSystem.Xamarin.ViewModels"
              Title="{Binding Title}">
 
@@ -10,7 +10,7 @@
     </ContentPage.ToolbarItems>-->
 
     <ContentPage.BindingContext>
-        <vm:PaymethodSelectViewModel />
+        <vm:SubmitOrderViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -24,38 +24,51 @@
 
 
     <StackLayout Orientation="Vertical" Padding="16,10,16,40" Spacing="10">
-        <Label Text="Choose a Payment Method" />
-        <ListView x:Name="PaymethodListView"
+        <Label Text="Choose an Address" />
+        <ListView x:Name="AddressListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                RefreshCommand="{Binding LoadPaymethodCommand}"
+                RefreshCommand="{Binding LoadAddressCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
-                ItemSelected="OnPaymethodSelected">
+                ItemSelected="OnAddressSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
                            
 
-                                <Label Text="{Binding CardHolderName}" 
+                                <Label Text="{Binding Address}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="13" />
-                                <Label Text= "{Binding CardNumber}" 
+                                <Label Text= "{Binding City}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
-                                
+                                <Label Text= "{Binding State}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                <Label Text= "{Binding ZipCode}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
 
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-       
+
+        <!--<Button Text="Add an Address" 
+                VerticalOptions="End"
+                BackgroundColor="CadetBlue"
+                TextColor="White"
+                Clicked=""/>-->
+
     </StackLayout>
 
 </ContentPage>

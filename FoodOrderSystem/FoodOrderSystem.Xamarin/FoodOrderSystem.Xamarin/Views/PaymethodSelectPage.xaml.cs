@@ -38,8 +38,16 @@ namespace FoodOrderSystem.Xamarin.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
-            viewModel.LoadPaymentCommand.Execute(null);
+
+            try
+            {
+                viewModel.LoadPaymethodCommand.Execute(null);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
             
             PaymethodListView.ItemsSource = viewModel.PaymentItems;
             

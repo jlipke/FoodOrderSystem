@@ -14,7 +14,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     List<MenuItem> results = new List<MenuItem>();
                     dc.tblMenuItems.ToList().ForEach(p => results.Add(new MenuItem
@@ -39,7 +39,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblMenuItem MenuItemRow = dc.tblMenuItems.FirstOrDefault(a => a.Id == id);
 
@@ -70,7 +70,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblMenuItem newrow = new tblMenuItem();
@@ -100,7 +100,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     // Make a new row
                     tblMenuItem newrow = new tblMenuItem();
@@ -130,7 +130,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblMenuItem updatedrow = dc.tblMenuItems.FirstOrDefault(a => a.Id == id);
 
@@ -158,7 +158,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblMenuItem updatedrow = dc.tblMenuItems.FirstOrDefault(a => a.Id == menuItem.Id);
 
@@ -186,7 +186,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblMenuItem deletedrow = dc.tblMenuItems.FirstOrDefault(a => a.Id == id);
 
