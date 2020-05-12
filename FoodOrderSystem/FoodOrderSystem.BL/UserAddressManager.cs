@@ -132,7 +132,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserAddress row = dc.tblUserAddresses.FirstOrDefault(a => a.Id == addressid
                                                                               && a.UserId == userid);

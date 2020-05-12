@@ -148,7 +148,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
 
                     // TODO: Hash the password when it is getting inserted. May hash it at the user level 

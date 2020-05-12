@@ -108,7 +108,7 @@ namespace FoodOrderSystem.BL
         {
             try
             {
-                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
                     tblUserPayment row = dc.tblUserPayments.FirstOrDefault(a => a.Id == paymentid
                                                                               && a.UserId == userid);
