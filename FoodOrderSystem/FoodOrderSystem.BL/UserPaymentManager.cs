@@ -72,7 +72,6 @@ namespace FoodOrderSystem.BL
                 throw ex;
             }
         }
-
         public static List<UserPayment> LoadByUserId(Guid userid)
         {
             try
@@ -105,7 +104,37 @@ namespace FoodOrderSystem.BL
                 throw ex;
             }
         }
-
+        public static UserPayment LoadByUserAndPaymentId(Guid paymentid, Guid userid)
+        {
+            try
+            {
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                {
+                    tblUserPayment row = dc.tblUserPayments.FirstOrDefault(a => a.Id == paymentid
+                                                                              && a.UserId == userid);
+                    if (row != null)
+                    {
+                        return new UserPayment
+                        {
+                            Id = row.Id,
+                            UserId = row.UserId,
+                            CardHolderName = row.CardHolderName,
+                            CardNumber = row.CardNumber,
+                            ExpirationDate = row.ExpirationDate,
+                            CVC = row.CVC
+                        };
+                    }
+                    else
+                    {
+                        throw new Exception("Row not found...");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static bool Insert(UserPayment userPayment)
         {
             try
@@ -127,15 +156,14 @@ namespace FoodOrderSystem.BL
                     dc.tblUserPayments.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    
+                    return Convert.ToBoolean(dc.SaveChanges()); 
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
+                return false;
             }
         }
 
@@ -160,9 +188,7 @@ namespace FoodOrderSystem.BL
                     dc.tblUserPayments.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)

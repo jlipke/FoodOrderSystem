@@ -74,14 +74,14 @@
                Margin="22,152,0,0" 
                VerticalAlignment="Top" 
                Width="65"/>
-        <TextBox x:Name="txtPassword" 
-                 HorizontalAlignment="Left" 
-                 Height="22" 
-                 Margin="94,152,0,0" 
-                 TextWrapping="Wrap"
-                 Text=""
-                 VerticalAlignment="Top" 
-                 Width="158"/>
+        <PasswordBox x:Name="txtPassword"  
+                     ToolTip="Password"
+                     PasswordChar="*"
+                     HorizontalAlignment="Left" 
+                     Height="22" 
+                     Margin="94,152,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="158"/>
 
         <!-- Address Info-->
         <Label x:Name="lblAddressInfo"

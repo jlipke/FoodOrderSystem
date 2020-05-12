@@ -23,16 +23,16 @@ namespace FoodOrderSystem.WPF
     public partial class PaymentWindow : Window
     {
         UserPayment payment;
-        User user;
+        Guid userId;
 
-        public PaymentWindow()
+        public PaymentWindow(Guid userid)
         {
+            userId = userid;
             InitializeComponent();
         }
         public PaymentWindow(Guid paymentid, Guid userid)
         {
-            payment = UserPaymentManager.LoadById(paymentid);
-            user = UserManager.LoadById(userid);
+            payment = UserPaymentManager.LoadByUserAndPaymentId(paymentid, userid);
 
             InitializeComponent();
 
@@ -41,59 +41,72 @@ namespace FoodOrderSystem.WPF
             txtExpirationDate.Text = payment.ExpirationDate;
             txtCVC.Text = payment.CVC;
         }
-
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
-            payment = new UserPayment()
+            if (txtCardHolderName.Text != "" &&
+                txtCardNumber.Text != "" &&
+                txtExpirationDate.Text != "" &&
+                txtCVC.Text != "")
             {
-                Id = Guid.Empty,
-                UserId = user.Id,
-                CardHolderName = txtCardHolderName.Text,
-                CardNumber = txtCardNumber.Text,
-                ExpirationDate = txtExpirationDate.Text,
-                CVC = txtCVC.Text
-            };
+                payment = new UserPayment()
+                {
+                    Id = Guid.Empty,
+                    UserId = userId,
+                    CardHolderName = txtCardHolderName.Text,
+                    CardNumber = txtCardNumber.Text,
+                    ExpirationDate = txtExpirationDate.Text,
+                    CVC = txtCVC.Text
+                };
 
-            bool result = UserPaymentManager.Insert(payment);
+                bool result = UserPaymentManager.Insert(payment);
 
-            if (result)
-            {
-                MessageBox.Show("Payment Saved.");
-                this.Close();
+                if (result)
+                {
+                    MessageBox.Show("Payment saved.");
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("An error occurred when inserting.");
             }
             else
-                MessageBox.Show("An Error Occurred. Payment not Inserted.");
+                MessageBox.Show("Error. Please enter data into the fields.");
         }
-
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            payment.CardHolderName = txtCardHolderName.Text;
-            payment.CardNumber = txtCardNumber.Text;
-            payment.ExpirationDate = txtExpirationDate.Text;
-            payment.CVC = txtCVC.Text;
-
-            int result = UserPaymentManager.Update(payment);
-
-            if (result >= 1)
+            if (txtCardHolderName.Text != "" &&
+                txtCardNumber.Text != "" &&
+                txtExpirationDate.Text != "" &&
+                txtCVC.Text != "")
             {
-                MessageBox.Show("Payment Updated.");
-                this.Close();
+                payment.CardHolderName = txtCardHolderName.Text;
+                payment.CardNumber = txtCardNumber.Text;
+                payment.ExpirationDate = txtExpirationDate.Text;
+                payment.CVC = txtCVC.Text;
+
+                int result = UserPaymentManager.Update(payment);
+
+                if (result >= 1)
+                {
+                    MessageBox.Show("Payment updated.");
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("An error occurred when updating.");
             }
             else
-                MessageBox.Show("An Error Occurred. Payment not Updated.");
+                MessageBox.Show("Error. Please enter data into the fields.");
         }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             int result = UserPaymentManager.Delete(payment.Id);
 
             if (result >= 1)
             {
-                MessageBox.Show("Payment Deleted.");
+                MessageBox.Show("Payment deleted.");
                 this.Close();
             }
             else
-                MessageBox.Show("An Error Occurred. Payment not Deleted.");
+                MessageBox.Show("An error occurred when deleting.");
         }
     }
 }

@@ -127,6 +127,38 @@ namespace FoodOrderSystem.BL
                 throw ex;
             }
         }
+        
+        public static UserAddress LoadByUserAndAddressId(Guid addressid, Guid userid)
+        {
+            try
+            {
+                using (AzureFoodOrderSystemEntities dc = new AzureFoodOrderSystemEntities())
+                {
+                    tblUserAddress row = dc.tblUserAddresses.FirstOrDefault(a => a.Id == addressid
+                                                                              && a.UserId == userid);
+                    if (row != null)
+                    {
+                        return new UserAddress
+                        {
+                            Id = row.Id,
+                            UserId = row.UserId,
+                            Address = row.Address,
+                            City = row.City,
+                            State = row.State,
+                            ZipCode = row.ZipCode
+                        };
+                    }
+                    else
+                    {
+                        throw new Exception("Row not found...");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public static bool Insert(UserAddress userAddress)
         {
@@ -149,15 +181,12 @@ namespace FoodOrderSystem.BL
                     dc.tblUserAddresses.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                return false;
             }
         }
 
@@ -182,9 +211,7 @@ namespace FoodOrderSystem.BL
                     dc.tblUserAddresses.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)
