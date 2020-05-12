@@ -144,7 +144,7 @@ namespace FoodOrderSystem.BL
                             UserId = row.UserId,
                             Address = row.Address,
                             City = row.City,
-                            State = row.State,
+                            StateId = row.StateId,
                             ZipCode = row.ZipCode
                         };
                     }
