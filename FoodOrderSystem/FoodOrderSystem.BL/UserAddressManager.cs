@@ -97,6 +97,29 @@ namespace FoodOrderSystem.BL
                 throw ex;
             }
         }
+        public static List<State> LoadStates()
+        {
+            try
+            {
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                {
+                    List<State> results = new List<State>();
+
+                    dc.tblStates.ToList().ForEach(s => results.Add(new State
+                    {
+                        Id = s.Id,
+                        Name = s.Name,
+                        Abbreviation = s.Abbreviation
+                    }));
+
+                    return results;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public static State LoadStateById(int id)
         {
@@ -240,14 +263,14 @@ namespace FoodOrderSystem.BL
                     tblUserAddress newrow = new tblUserAddress();
 
                     State newstate = new State();
-                    newstate.Id = LoadStateByAbbreviation(userAddress.StateAbbreviation).Id;    // This is so the user will only need to enter WI.
+                    //newstate.Id = LoadStateByAbbreviation(userAddress.StateAbbreviation).Id;    // This is so the user will only need to enter WI.
                     
                     // Set the properties
                     newrow.Id = Guid.NewGuid();
                     newrow.UserId = userAddress.UserId;
                     newrow.Address = userAddress.Address;
                     newrow.City = userAddress.City;
-                    newrow.StateId = newstate.Id;
+                    newrow.StateId = userAddress.StateId;
                     newrow.ZipCode = userAddress.ZipCode;
 
                     // Do the Insert
@@ -344,12 +367,12 @@ namespace FoodOrderSystem.BL
                     if (updatedrow != null)
                     {
                         State newstate = new State();
-                        newstate.Id = LoadStateByAbbreviation(userAddress.StateAbbreviation).Id;    // This is so the user will only need to enter WI.
+                        //newstate.Id = LoadStateByAbbreviation(userAddress.StateAbbreviation).Id;    // This is so the user will only need to enter WI.
 
                         updatedrow.UserId = userAddress.UserId;
                         updatedrow.Address = userAddress.Address;
                         updatedrow.City = userAddress.City;
-                        updatedrow.StateId = newstate.Id;
+                        updatedrow.StateId = userAddress.StateId;
                         updatedrow.ZipCode = userAddress.ZipCode;
 
 

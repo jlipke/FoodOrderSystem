@@ -31,6 +31,11 @@ namespace FoodOrderSystem.WPF
         {
             userId = userid;
             InitializeComponent();
+            Reload();
+
+            cboState.DisplayMemberPath = "Name";
+            cboState.SelectedValuePath = "Id";
+
         }
 
         // For Existing Address
@@ -47,7 +52,7 @@ namespace FoodOrderSystem.WPF
             cboState.DisplayMemberPath = "Name";
             cboState.SelectedValuePath = "Id";
 
-            cboState.SelectedItem = address.State;
+            cboState.SelectedValue = address.StateId + 1;
 
             txtZip.Text = address.ZipCode;
 
@@ -72,7 +77,7 @@ namespace FoodOrderSystem.WPF
                     UserId = userId,
                     Address = txtAddress.Text,
                     City = txtCity.Text,
-                    StateId = cboState.SelectedIndex,
+                    StateId = cboState.SelectedIndex + 1,
                     ZipCode = txtZip.Text,
                 };
 
@@ -97,6 +102,7 @@ namespace FoodOrderSystem.WPF
             {
                 address.Address = txtAddress.Text;
                 address.City = txtCity.Text;
+                address.StateId = cboState.SelectedIndex + 1;
                 address.ZipCode = txtZip.Text;
 
                 int result = UserAddressManager.Update(address);

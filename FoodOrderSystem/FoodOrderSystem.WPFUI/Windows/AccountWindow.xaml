@@ -1,0 +1,142 @@
+﻿<Window x:Class="FoodOrderSystem.WPF.AccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodOrderSystem.WPF"
+        mc:Ignorable="d"
+        Title="Account" Height="450" Width="800">
+    <Grid x:Name="grdAccountScreen">
+
+        <!-- Personal Info -->
+        <Label x:Name="lblPersonalInformation"
+               Content="Personal Information"
+               HorizontalAlignment="Left" 
+               Margin="87,45,0,0"
+               VerticalAlignment="Top"/>
+        <Label x:Name="lblFirstName"
+               Content="First Name:"
+               HorizontalAlignment="Left" 
+               Margin="15,77,0,0"
+               VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFirstName"
+                 HorizontalAlignment="Left" 
+                 Height="22"
+                 Margin="87,77,0,0"
+                 TextWrapping="Wrap" 
+                 Text=""
+                 VerticalAlignment="Top" 
+                 Width="158"/>
+        <Label x:Name="lblLastName" 
+               Content="Last Name:"
+               HorizontalAlignment="Left" 
+               Margin="15,105,0,0" 
+               VerticalAlignment="Top"
+               Width="65"/>
+        <TextBox x:Name="txtLastName" 
+                 HorizontalAlignment="Left" 
+                 Height="22" 
+                 Margin="87,105,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="" 
+                 VerticalAlignment="Top" 
+                 Width="158"/>
+        <Label x:Name="lblPhone" 
+            Content="Phone:" 
+            HorizontalAlignment="Left" 
+            Margin="15,131,0,0" 
+            VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPhone"
+            HorizontalAlignment="Left" 
+            Height="22" 
+            Margin="87,131,0,0" 
+            TextWrapping="Wrap" 
+            Text="" 
+            VerticalAlignment="Top" 
+            Width="158"/>
+        <Label x:Name="lblEmail" 
+               Content="Email:" 
+               HorizontalAlignment="Left" 
+               Margin="15,161,0,0" 
+               VerticalAlignment="Top"/>
+        <Label x:Name="lblEmailShow" 
+               Content="" 
+               HorizontalAlignment="Left" 
+               Margin="87,158,0,0" 
+               VerticalAlignment="Top" Width="158"/>
+        <Label x:Name="lblPassword" 
+               Content="Password:" 
+               HorizontalAlignment="Left" 
+               Margin="15,189,0,0" 
+               VerticalAlignment="Top" 
+               Width="65"/>
+        <PasswordBox x:Name="txtPassword"  
+                     ToolTip="Password"
+                     PasswordChar="*"
+                     HorizontalAlignment="Left" 
+                     Height="22" 
+                     Margin="87,189,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="158"/>
+                     
+
+        <!-- Display Address -->
+        <Label x:Name="lblAddressInformation"
+               Content="Address Information"
+               HorizontalAlignment="Left" 
+               Margin="300,45,0,0"
+               VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgvAddressInfo"
+                  HorizontalAlignment="Left" 
+                  Height="125"
+                  Margin="300,77,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="462"/>
+
+        <Label x:Name="lblPaymentInformation"
+               Content="Payment Information"
+               HorizontalAlignment="Left" 
+               Margin="301,216,0,0"
+               VerticalAlignment="Top"/>
+
+        <DataGrid x:Name="dgvPaymentInfo"
+                  HorizontalAlignment="Left"
+                  Height="125"
+                  Margin="301,247,0,0" 
+                  VerticalAlignment="Top"
+                  Width="462"/>
+        <Button x:Name="btnLoad"
+                Content="Load"
+                HorizontalAlignment="Left"
+                Margin="301,384,0,0" 
+                VerticalAlignment="Top"
+                Width="75" Click="btnLoad_Click"/>
+        <Button x:Name="btnAdd"
+                Content="Add"
+                HorizontalAlignment="Left"
+                Margin="398,384,0,0" 
+                VerticalAlignment="Top"
+                Width="76" Click="btnAdd_Click"/>
+        <Button x:Name="btnEdit"
+                Content="Edit"
+                HorizontalAlignment="Left"
+                Margin="497,384,0,0" 
+                VerticalAlignment="Top"
+                Width="76" Click="btnEdit_Click"/>
+        <Button x:Name="btnSave"
+                Content="Save" 
+                HorizontalAlignment="Left" 
+                Margin="43,232,0,0" 
+                VerticalAlignment="Top" 
+                Width="75" Click="btnSave_Click"/>
+        <Button x:Name="btnCancel"
+                Content="Cancel" 
+                HorizontalAlignment="Left" 
+                Margin="140,232,0,0" 
+                VerticalAlignment="Top" 
+                Width="75" Click="btnCancel_Click"/>
+
+
+
+    </Grid>
+</Window>

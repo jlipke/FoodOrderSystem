@@ -104,6 +104,7 @@ namespace FoodOrderSystem.WPF
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            new LoginWindow().ShowDialog();
         }
     }
 }
