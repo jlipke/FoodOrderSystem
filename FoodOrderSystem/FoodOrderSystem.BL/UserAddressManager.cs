@@ -125,6 +125,36 @@ namespace FoodOrderSystem.BL
             }
         }
 
+        public static State LoadStateByName(string name)
+        {
+            try
+            {
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                {
+                    tblState StateRow = dc.tblStates.FirstOrDefault(a => a.Name == name);
+
+                    if (StateRow != null)
+                    {
+                        return new State
+                        {
+                            Id = StateRow.Id,
+                            Name = StateRow.Name
+
+                        };
+                    }
+
+                    else
+                    {
+                        throw new Exception("Row not found...");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<UserAddress> LoadByUserId(Guid userid)
         {
             try
@@ -146,6 +176,7 @@ namespace FoodOrderSystem.BL
                         Address = p.Address,
                         City = p.City,
                         StateId = p.StateId,
+                        StateName = LoadStateById(p.StateId).Name,
                         ZipCode = p.ZipCode
 
                     }));
@@ -176,6 +207,7 @@ namespace FoodOrderSystem.BL
                             Address = row.Address,
                             City = row.City,
                             StateId = row.StateId,
+                            StateName = LoadStateById(row.StateId).Name,
                             ZipCode = row.ZipCode
                         };
                     }
@@ -200,12 +232,15 @@ namespace FoodOrderSystem.BL
                     // Make a new row
                     tblUserAddress newrow = new tblUserAddress();
 
+                    State newstate = new State();
+                    newstate.Id = LoadStateByName(userAddress.StateName).Id;    // This is so the user will only need to enter WI.
+                    
                     // Set the properties
                     newrow.Id = Guid.NewGuid();
                     newrow.UserId = userAddress.UserId;
                     newrow.Address = userAddress.Address;
                     newrow.City = userAddress.City;
-                    newrow.StateId = userAddress.StateId;
+                    newrow.StateId = newstate.Id;
                     newrow.ZipCode = userAddress.ZipCode;
 
                     // Do the Insert
@@ -221,7 +256,7 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static bool Insert(Guid userid, string address, string city, int stateId, string zipcode)
+        public static bool Insert(Guid userid, string address, string city, string stateName, string zipcode)
         {
             try
             {
@@ -230,12 +265,15 @@ namespace FoodOrderSystem.BL
                     // Make a new row
                     tblUserAddress newrow = new tblUserAddress();
 
+                    State newstate = new State();
+                    newstate.Id = LoadStateByName(stateName).Id;    // This is so the user will only need to enter WI.
+
                     // Set the properties
                     newrow.Id = Guid.NewGuid();
                     newrow.UserId = userid;
                     newrow.Address = address;
                     newrow.City = city;
-                    newrow.StateId = stateId;
+                    newrow.StateId = newstate.Id;
                     newrow.ZipCode = zipcode;
 
                     // Do the Insert
@@ -252,7 +290,7 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static int Update(Guid id, Guid userid, string address, string city, int stateId, string zipcode)
+        public static int Update(Guid id, Guid userid, string address, string city, string stateName, string zipcode)
         {
             try
             {
@@ -260,12 +298,17 @@ namespace FoodOrderSystem.BL
                 {
                     tblUserAddress updatedrow = dc.tblUserAddresses.FirstOrDefault(a => a.Id == id);
 
+
+
                     if (updatedrow != null)
                     {
+                        State newstate = new State();
+                        newstate.Id = LoadStateByName(stateName).Id;    // This is so the user will only need to enter WI.
+
                         updatedrow.UserId = userid;
                         updatedrow.Address = address;
                         updatedrow.City = city;
-                        updatedrow.StateId = stateId;
+                        updatedrow.StateId = newstate.Id;
                         updatedrow.ZipCode = zipcode;
 
 
@@ -293,10 +336,13 @@ namespace FoodOrderSystem.BL
 
                     if (updatedrow != null)
                     {
+                        State newstate = new State();
+                        newstate.Id = LoadStateByName(userAddress.StateName).Id;    // This is so the user will only need to enter WI.
+
                         updatedrow.UserId = userAddress.UserId;
                         updatedrow.Address = userAddress.Address;
                         updatedrow.City = userAddress.City;
-                        updatedrow.StateId = userAddress.StateId;
+                        updatedrow.StateId = newstate.Id;
                         updatedrow.ZipCode = userAddress.ZipCode;
 
 
