@@ -22,16 +22,19 @@ namespace FoodOrderSystem.WPF
     /// </summary>
     public partial class HomeWindow : Window
     {
-        public static Guid UserAuthentication { get; set; }
+        public Guid UserId;
 
         public HomeWindow()
         {
             InitializeComponent();
+
+            UserId = Guid.Empty;
+
             DrawScreen();
         }
         private void DrawScreen()
         {
-            ucNavigation navigation = new ucNavigation();
+            ucNavigation navigation = new ucNavigation(UserId);
             navigation.Margin = new Thickness(0, 0, 0, 0);
             grdHomeScreen.Children.Add(navigation);
         }

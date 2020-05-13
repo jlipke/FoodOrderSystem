@@ -20,17 +20,26 @@ namespace FoodOrderSystem.WPF
     /// </summary>
     public partial class ucNavigation : UserControl
     {
+        public static List<BL.Models.MenuItem> ShoppingCart 
+        { 
+            get { return shoppingCart; }
+            set { shoppingCart = value; }
+        }
+
         public static Guid UserId;
+        private static List<BL.Models.MenuItem> shoppingCart;
 
         public ucNavigation(Guid userid)
         {
             if (userid != Guid.Empty)
                 UserId = userid;
+
+            InitializeComponent(); 
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            new HomeWindow(UserId).ShowDialog();
+            new HomeWindow().ShowDialog();
         }
         
         private void btnMenuItem_Click(object sender, RoutedEventArgs e)
@@ -41,7 +50,7 @@ namespace FoodOrderSystem.WPF
         private void btnShoppingCart_Click(object sender, RoutedEventArgs e)
         {
             if (UserId != Guid.Empty)
-                new ShoppingWindow(UserId).ShowDialog();
+                new ShoppingWindow(ShoppingCart, UserId).ShowDialog();
             else
                 MessageBox.Show("Please login for to look at your cart.");
         }

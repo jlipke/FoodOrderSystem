@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:FoodOrderSystem.WPF"
         mc:Ignorable="d"
         Title="ShoppingWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid x:Name="grdShoppingScreen">
+        <DataGrid x:Name="dgvCart" HorizontalAlignment="Left" Height="338" Margin="50,10,0,0" VerticalAlignment="Top" Width="701"/>
+        <Button x:Name="btnCheckout" Content="Checkout" HorizontalAlignment="Left" Margin="676,392,0,0" VerticalAlignment="Top" Width="75" Click="btnCheckout_Click" RenderTransformOrigin="8.781,1.011"/>
+        <ComboBox x:Name="cboAddress" HorizontalAlignment="Left" Margin="366,392,0,0" VerticalAlignment="Top" Width="291" Height="20"/>
+        <ComboBox x:Name="cboPayment" HorizontalAlignment="Left" Margin="50,392,0,0" VerticalAlignment="Top" Width="291" Height="20"/>
+        <Label Content="Select Payment" HorizontalAlignment="Left" Margin="50,361,0,0" VerticalAlignment="Top"/>
+        <Label Content="Select Address" HorizontalAlignment="Left" Margin="366,361,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -120,16 +120,15 @@ namespace FoodOrderSystem.BL
 
                     // Set the properties
                     newrow.Id = Guid.NewGuid();
-                    newrow.OrderId = orderItem.Id;
+                    newrow.OrderId = orderItem.OrderId;
                     newrow.MenuItemId = orderItem.MenuItemId;
 
                     // Do the Insert
                     dc.tblOrderItems.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
+                    return Convert.ToBoolean(dc.SaveChanges());
 
-                    return true;
                 }
             }
             catch (Exception ex)

@@ -43,7 +43,6 @@ namespace FoodOrderSystem.WPF
                 else
                 {
                     MessageBox.Show("Invalid email or password.");
-                    HomeWindow.UserAuthentication = Guid.Empty;
                     txtPassword.Password = "";
                 }
             }

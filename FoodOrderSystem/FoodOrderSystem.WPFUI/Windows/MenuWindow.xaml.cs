@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FoodOrderSystem.BL;
+using FoodOrderSystem.BL.Models;
 
 namespace FoodOrderSystem.WPF
 {
@@ -20,16 +22,27 @@ namespace FoodOrderSystem.WPF
     public partial class MenuWindow : Window
     {
         Guid UserId;
+        List<BL.Models.MenuItem> menuItems;
+        List<BL.Models.MenuItem> OrderItems;
 
         public MenuWindow(Guid userId)
         {
             UserId = userId;
             InitializeComponent();
+            OrderItems = new List<BL.Models.MenuItem>();
+
+            Reload();
 
             DrawScreen();
         }
 
-        public void DrawScreen()
+        private void Reload()
+        {
+            dgvMenu.ItemsSource = null;
+            menuItems = MenuItemManager.Load();
+            dgvMenu.ItemsSource = menuItems;
+        }
+        private void DrawScreen()
         {
             ucNavigation navigation = new ucNavigation(UserId);
             navigation.Margin = new Thickness(0, 0, 0, 0);
@@ -40,12 +53,25 @@ namespace FoodOrderSystem.WPF
         {
             if (UserId != Guid.Empty)
             {
-
+                if (dgvMenu.SelectedIndex > -1)
+                {
+                    OrderItems.Add(menuItems[dgvMenu.SelectedIndex]);
+                    MessageBox.Show("Item added to cart.");
+                }
+                else
+                {
+                    MessageBox.Show("Please select a menu item.");
+                }
             }
             else
             {
                 MessageBox.Show("Please login to add items to cart");
             }
+        }
+
+        private void btnCheckout_Click(object sender, RoutedEventArgs e)
+        {
+            new ShoppingWindow(OrderItems, UserId).ShowDialog();
         }
     }
 }

@@ -8,7 +8,8 @@
         Title="MenuWindow" Height="450" Width="800">
     <Grid x:Name="grdMenuScreen">
         <DataGrid x:Name="dgvMenu" HorizontalAlignment="Left" Height="301" Margin="46,79,0,0" VerticalAlignment="Top" Width="702"/>
-        <Button x:Name="btnAddToCart" Content="Add To Cart" HorizontalAlignment="Left" Margin="341,392,0,0" VerticalAlignment="Top" Width="75" Click="btnAddToCart_Click"/>
+        <Button x:Name="btnAddToCart" Content="Add To Cart" HorizontalAlignment="Left" Margin="296,392,0,0" VerticalAlignment="Top" Width="75" Click="btnAddToCart_Click"/>
+        <Button x:Name="btnCheckout" Content="Checkout" HorizontalAlignment="Left" Margin="403,392,0,0" VerticalAlignment="Top" Width="75" Click="btnCheckout_Click"/>
 
     </Grid>
 </Window>

@@ -126,37 +126,25 @@ namespace FoodOrderSystem.BL
                     tblOrder newrow = new tblOrder();
 
                     // Set the properties
-                    newrow.Id = order.Id;
+                    newrow.Id = Guid.NewGuid();
                     newrow.UserId = order.UserId;
                     newrow.AddressId = order.AddressId;
                     newrow.PaymentId = order.PaymentId;
                     newrow.Date = order.Date;
-                    
+
+                    order.Id = newrow.Id;
+
                     // Do the Insert
                     dc.tblOrders.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
 
-                    foreach (OrderItem orderitem in order.OrderItems)
-                    {
-                        //OrderItemManager.Insert(orderitem, newrow.Id);
-                        tblOrderItem newitemrow = new tblOrderItem();
-                        newitemrow.Id = orderitem.Id;
-                        newitemrow.MenuItemId = orderitem.MenuItemId;
-                        newitemrow.OrderId = newrow.Id;
-                        dc.tblOrderItems.Add(newitemrow);
-                        dc.SaveChanges();
-
-                    }
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                return false;
             }
         }
 
@@ -180,9 +168,7 @@ namespace FoodOrderSystem.BL
                     dc.tblOrders.Add(newrow);
 
                     // Commit the insert
-                    dc.SaveChanges();
-
-                    return true;
+                    return Convert.ToBoolean(dc.SaveChanges());
                 }
             }
             catch (Exception ex)
