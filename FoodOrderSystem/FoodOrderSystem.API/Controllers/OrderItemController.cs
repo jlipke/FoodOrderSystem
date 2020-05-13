@@ -27,7 +27,7 @@ namespace FoodOrderSystem.API.Controllers
         // POST: api/OrderItem
         public void Post([FromBody]OrderItem make)
         {
-            OrderItemManager.Insert(make);
+            //OrderItemManager.Insert(make);
         }
 
         // PUT: api/OrderItem/5

@@ -25,15 +25,15 @@ namespace FoodOrderSystem.API.Controllers
         }
 
         // POST: api/Order
-        public void Post([FromBody]Order make)
+        public void Post([FromBody]Order order)
         {
-            OrderManager.Insert(make);
+            OrderManager.Insert(order);
         }
 
         // PUT: api/Order/5
-        public void Put(Guid id, [FromBody]Order make)
+        public void Put(Guid id, [FromBody]Order order)
         {
-            OrderManager.Update(make);
+            OrderManager.Update(order);
         }
 
         // DELETE: api/Order/5

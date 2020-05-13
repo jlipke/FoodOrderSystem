@@ -86,8 +86,20 @@ namespace FoodOrderSystem.Xamarin.Views
 
         private void Confirm_Clicked(object sender, EventArgs e)
         {
-
-            DisplayAlert("Success", "Your Order has been Completed", "Ok");
+            
+            viewModel.SendOrder(viewModel.ConvertShoppingCartToOrder(App.userCart, App.LoggedInUser));
+            
+            if (viewModel.success == true)
+            {
+                DisplayAlert("Success", "Your Order has been Completed", "Ok");
+                App.userCart.ClearCart();
+                Application.Current.MainPage = new MenuItemsPage();
+            }
+            else
+            {
+                DisplayAlert("Failure", "Something went wrong", "Ok");
+                return;
+            }
         }
     }
 }

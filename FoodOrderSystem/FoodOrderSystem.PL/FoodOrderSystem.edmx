@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="lipkedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="lipkedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -156,18 +156,6 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="OrderItem_OrderId">
-          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1" />
-          <End Role="tblOrderItem" Type="Self.tblOrderItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblOrder">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblOrderItem">
-              <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="UserAddress_UserId">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblUserAddress" Type="Self.tblUserAddress" Multiplicity="*" />
@@ -238,10 +226,6 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             <End Role="tblMenuItem" EntitySet="tblMenuItem" />
             <End Role="tblOrderItem" EntitySet="tblOrderItem" />
           </AssociationSet>
-          <AssociationSet Name="OrderItem_OrderId" Association="Self.OrderItem_OrderId">
-            <End Role="tblOrder" EntitySet="tblOrder" />
-            <End Role="tblOrderItem" EntitySet="tblOrderItem" />
-          </AssociationSet>
           <AssociationSet Name="UserAddress_UserId" Association="Self.UserAddress_UserId">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblUserAddress" EntitySet="tblUserAddress" />
@@ -251,8 +235,7 @@ warning 6002: The table/view 'lipkedb.sys.database_firewall_rules' does not have
             <End Role="tblUserPayment" EntitySet="tblUserPayment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="lipkedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

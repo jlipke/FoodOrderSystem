@@ -120,8 +120,41 @@ namespace FoodOrderSystem.BL
 
                     // Set the properties
                     newrow.Id = Guid.NewGuid();
-                    newrow.OrderId = orderItem.OrderId;
+                    newrow.OrderId = orderItem.Id;
                     newrow.MenuItemId = orderItem.MenuItemId;
+
+                    // Do the Insert
+                    dc.tblOrderItems.Add(newrow);
+
+                    // Commit the insert
+                    dc.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static bool Insert(List<OrderItem> orderItems)
+        {
+            try
+            {
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                {
+                    // Make a new row
+                    tblOrderItem newrow = new tblOrderItem();
+
+                    // Set the properties
+                    foreach (OrderItem item in orderItems)
+                    {
+                        newrow.Id = Guid.NewGuid();
+                        newrow.OrderId = item.OrderId;
+                        newrow.MenuItemId = item.MenuItemId;
+                    }
 
                     // Do the Insert
                     dc.tblOrderItems.Add(newrow);

@@ -12,5 +12,10 @@ namespace FoodOrderSystem.Xamarin.Models
         public Guid PaymentId { get; set; }
         public DateTime Date { get; set; }
         public List<OrderItem> OrderItems { get; set; }
+
+        public Order()
+        {
+            OrderItems = new List<OrderItem>();
+        }
     }
 }

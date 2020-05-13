@@ -70,7 +70,6 @@
     <Build Include="ForeignKeys\Order_AddressId.sql" />
     <Build Include="ForeignKeys\Order_CardId.sql" />
     <Build Include="ForeignKeys\OrderItem_MenuItemId.sql" />
-    <Build Include="ForeignKeys\OrderItem_OrderId.sql" />
     <Build Include="Tables\tblMenuItem.sql" />
     <Build Include="Tables\tblOrder.sql" />
     <Build Include="Tables\tblOrderItem.sql" />

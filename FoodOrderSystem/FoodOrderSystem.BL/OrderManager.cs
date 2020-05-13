@@ -126,17 +126,29 @@ namespace FoodOrderSystem.BL
                     tblOrder newrow = new tblOrder();
 
                     // Set the properties
-                    newrow.Id = Guid.NewGuid();
+                    newrow.Id = order.Id;
                     newrow.UserId = order.UserId;
                     newrow.AddressId = order.AddressId;
                     newrow.PaymentId = order.PaymentId;
                     newrow.Date = order.Date;
-
+                    
                     // Do the Insert
                     dc.tblOrders.Add(newrow);
 
                     // Commit the insert
                     dc.SaveChanges();
+
+                    foreach (OrderItem orderitem in order.OrderItems)
+                    {
+                        //OrderItemManager.Insert(orderitem, newrow.Id);
+                        tblOrderItem newitemrow = new tblOrderItem();
+                        newitemrow.Id = orderitem.Id;
+                        newitemrow.MenuItemId = orderitem.MenuItemId;
+                        newitemrow.OrderId = newrow.Id;
+                        dc.tblOrderItems.Add(newitemrow);
+                        dc.SaveChanges();
+
+                    }
 
                     return true;
                 }
