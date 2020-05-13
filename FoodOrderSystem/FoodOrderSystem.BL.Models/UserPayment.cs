@@ -14,5 +14,6 @@ namespace FoodOrderSystem.BL.Models
         public string CardNumber { get; set; }
         public string ExpirationDate { get; set; }
         public string CVC { get; set; }
+
     }
 }

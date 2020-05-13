@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderSystem.Xamarin.Views.ShoppingCartPage"
              xmlns:vm="clr-namespace:FoodOrderSystem.Xamarin.ViewModels"
-             Title="{Binding Title}">
+             Title="Shopping Cart">
 
     <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Create New Account" Clicked="CreateAccountClick"></ToolbarItem>

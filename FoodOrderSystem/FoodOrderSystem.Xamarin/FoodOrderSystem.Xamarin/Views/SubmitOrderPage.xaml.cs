@@ -22,53 +22,53 @@ namespace FoodOrderSystem.Xamarin.Views
         }
 
         
-        async void OnAddressSelected(object sender, SelectedItemChangedEventArgs args)
-        {
-            var item = args.SelectedItem as UserAddress;
-            if (item == null)
-                return;
+        //async void OnAddressSelected(object sender, SelectedItemChangedEventArgs args)
+        //{
+        //    var item = args.SelectedItem as UserAddress;
+        //    if (item == null)
+        //        return;
 
-            item.Id = App.LoggedInUser.SelectedAddressId;
+        //    item.Id = App.LoggedInUser.SelectedAddressId;
 
-            var action = await DisplayAlert("Alert", "Would you like to change the selected Address?", "Yes", "No");
-            if (action)
-            {
-                App.LoggedInUser.SelectedAddress.Clear();
-                await Navigation.PopAsync();
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                return;
-            }
+        //    var action = await DisplayAlert("Alert", "Would you like to change the selected Address?", "Yes", "No");
+        //    if (action)
+        //    {
+        //        App.LoggedInUser.SelectedAddress.Clear();
+        //        await Navigation.PopAsync();
+        //        await Navigation.PopAsync();
+        //    }
+        //    else
+        //    {
+        //        return;
+        //    }
 
             
-            // Manually deselect item.
-            AddressListView.SelectedItem = null;
-        }
+        //    // Manually deselect item.
+        //    AddressListView.SelectedItem = null;
+        //}
 
-        async void OnPaymethodSelected(object sender, SelectedItemChangedEventArgs args)
-        {
-            var item = args.SelectedItem as UserPayment;
-            if (item == null)
-                return;
+        //async void OnPaymethodSelected(object sender, SelectedItemChangedEventArgs args)
+        //{
+        //    var item = args.SelectedItem as UserPayment;
+        //    if (item == null)
+        //        return;
 
-            item.Id = App.LoggedInUser.SelectedPaymentId;
+        //    item.Id = App.LoggedInUser.SelectedPaymentId;
 
-            var action = await DisplayAlert("Alert", "Would you like to change the selected Pay Method?", "Yes", "No");
-            if (action)
-            {
-                App.LoggedInUser.SelectedPaymethod.Clear();
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                return;
-            }
+        //    var action = await DisplayAlert("Alert", "Would you like to change the selected Pay Method?", "Yes", "No");
+        //    if (action)
+        //    {
+        //        App.LoggedInUser.SelectedPaymethod.Clear();
+        //        await Navigation.PopAsync();
+        //    }
+        //    else
+        //    {
+        //        return;
+        //    }
 
-            // Manually deselect item.
-            AddressListView.SelectedItem = null;
-        }
+        //    // Manually deselect item.
+        //    AddressListView.SelectedItem = null;
+        //}
 
         protected override void OnAppearing()
         {
@@ -83,7 +83,11 @@ namespace FoodOrderSystem.Xamarin.Views
 
 
         }
-        
-        
+
+        private void Confirm_Clicked(object sender, EventArgs e)
+        {
+
+            DisplayAlert("Success", "Your Order has been Completed", "Ok");
+        }
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderSystem.Xamarin.Views.AddressSelectPage"
              xmlns:vm="clr-namespace:FoodOrderSystem.Xamarin.ViewModels"
-             Title="{Binding Title}">
+             Title="Address">
 
     <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Create New Account" Clicked="CreateAccountClick"></ToolbarItem>
@@ -48,7 +48,7 @@
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
-                                <Label Text= "{Binding State}" 
+                                <Label Text= "{Binding StateAbbreviation}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />

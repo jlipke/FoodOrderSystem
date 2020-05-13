@@ -63,8 +63,10 @@ namespace FoodOrderSystem.Xamarin.Views
             if (item == null)
                 return;
 
-            item.Id = App.LoggedInUser.SelectedPaymentId;
-            item = App.LoggedInUser.SelectedPaymethod.First();
+            App.LoggedInUser.SelectedPaymentId = item.Id;
+            App.LoggedInUser.SelectedPaymethod.Clear();
+            App.LoggedInUser.SelectedPaymethod.Add(item);
+
             await Navigation.PushAsync(new SubmitOrderPage());
 
             // Manually deselect item.

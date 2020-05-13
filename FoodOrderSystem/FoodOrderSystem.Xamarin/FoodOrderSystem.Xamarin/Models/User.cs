@@ -17,7 +17,15 @@ namespace FoodOrderSystem.Xamarin.Models
 
         public Guid SelectedAddressId { get; set; }
         public Guid SelectedPaymentId { get; set; }
-        public List<UserAddress> SelectedAddress { get; set; }
+        public List<UserAddress> SelectedAddress { get; set; }  // It's in a list to be able to add it to a ListView
         public List<UserPayment> SelectedPaymethod { get; set; }
+
+        public User()
+        {
+            SelectedAddress = new List<UserAddress>();
+            SelectedPaymethod = new List<UserPayment>();
+        }
     }
+
+    
 }

@@ -32,8 +32,8 @@
                 RefreshCommand="{Binding LoadAddressCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                ItemSelected="OnAddressSelected">
+                CachingStrategy="RecycleElement">
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -48,7 +48,7 @@
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
-                                <Label Text= "{Binding State}" 
+                                <Label Text= "{Binding StateAbbreviation}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
@@ -62,7 +62,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
         <ListView x:Name="PaymethodListView"
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
@@ -70,8 +70,8 @@
                 RefreshCommand="{Binding LoadPaymethodCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                ItemSelected="OnPaymethodSelected">
+                CachingStrategy="RecycleElement">
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -93,6 +93,14 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button Text="Complete Order"
+                BackgroundColor="CadetBlue"
+                TextColor="White"
+                Clicked="Confirm_Clicked"
+            
+                />
+
 
         <!--<Button Text="Add an Address" 
                 VerticalOptions="End"

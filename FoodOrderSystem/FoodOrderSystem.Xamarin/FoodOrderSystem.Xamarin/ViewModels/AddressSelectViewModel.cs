@@ -46,7 +46,7 @@ namespace FoodOrderSystem.Xamarin.ViewModels
 
                     AddressItems.Clear();
                     ListAddressItems = App.LoggedInUser.Addresses;
-                    var addressitems = ListAddressItems;    // Add the list of menuItems from the userCart
+                    var addressitems = ListAddressItems;    
                     foreach (var address in addressitems)
                     {
                         AddressItems.Add(address);

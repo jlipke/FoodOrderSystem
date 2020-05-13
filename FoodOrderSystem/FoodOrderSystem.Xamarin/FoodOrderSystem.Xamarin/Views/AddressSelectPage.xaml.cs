@@ -1,6 +1,7 @@
 ﻿using FoodOrderSystem.Xamarin.Models;
 using FoodOrderSystem.Xamarin.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,16 +25,26 @@ namespace FoodOrderSystem.Xamarin.Views
         
         async void OnAddressSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as UserAddress;
-            if (item == null)
-                return;
+            try
+            {
+                var item = args.SelectedItem as UserAddress;
+                if (item == null)
+                    return;
 
-            item.Id = App.LoggedInUser.SelectedAddressId;
-            item = App.LoggedInUser.SelectedAddress.First();
-            await Navigation.PushAsync(new PaymethodSelectPage());
+                App.LoggedInUser.SelectedAddressId = item.Id;
+                App.LoggedInUser.SelectedAddress.Clear();
+                App.LoggedInUser.SelectedAddress.Add(item);
 
-            // Manually deselect item.
-            AddressListView.SelectedItem = null;
+                await Navigation.PushAsync(new PaymethodSelectPage());
+
+                // Manually deselect item.
+                AddressListView.SelectedItem = null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         protected override void OnAppearing()

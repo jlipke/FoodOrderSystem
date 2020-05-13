@@ -23,6 +23,7 @@ namespace FoodOrderSystem.Xamarin.Views
         {
             await Navigation.PushAsync(new CreateAccountPage());
         }
+        
 
         private async void LoginClicked(object sender, EventArgs e)
         {
@@ -38,6 +39,8 @@ namespace FoodOrderSystem.Xamarin.Views
                     string password = txtPassword.Text;
 
                     App.LoggedInUser = await viewModel.LogIn(email, password);
+
+
 
                     if (App.LoggedInUser != null)
                     {
