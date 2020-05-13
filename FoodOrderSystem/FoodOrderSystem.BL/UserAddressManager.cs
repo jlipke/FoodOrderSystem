@@ -77,7 +77,38 @@ namespace FoodOrderSystem.BL
                             Address = UserAddressRow.Address,
                             City = UserAddressRow.City,
                             StateId = UserAddressRow.StateId,
+                            StateName = LoadStateById(UserAddressRow.StateId).Name,
                             ZipCode = UserAddressRow.ZipCode
+
+                        };
+                    }
+
+                    else
+                    {
+                        throw new Exception("Row not found...");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static State LoadStateById(int id)
+        {
+            try
+            {
+                using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
+                {
+                    tblState StateRow = dc.tblStates.FirstOrDefault(a => a.Id == id);
+
+                    if (StateRow != null)
+                    {
+                        return new State
+                        {
+                            Id = StateRow.Id,
+                            Name = StateRow.Name
 
                         };
                     }
