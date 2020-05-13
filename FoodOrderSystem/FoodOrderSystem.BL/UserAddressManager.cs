@@ -24,6 +24,8 @@ namespace FoodOrderSystem.BL
                         Address = p.Address,
                         City = p.City,
                         StateId = p.StateId,
+                        StateName = LoadStateById(p.StateId).Name,
+                        StateAbbreviation = LoadStateById(p.StateId).Abbreviation,
                         ZipCode = p.ZipCode
 
                     }));
@@ -78,6 +80,7 @@ namespace FoodOrderSystem.BL
                             City = UserAddressRow.City,
                             StateId = UserAddressRow.StateId,
                             StateName = LoadStateById(UserAddressRow.StateId).Name,
+                            StateAbbreviation = LoadStateById(UserAddressRow.StateId).Abbreviation,
                             ZipCode = UserAddressRow.ZipCode
 
                         };
@@ -108,6 +111,7 @@ namespace FoodOrderSystem.BL
                         return new State
                         {
                             Id = StateRow.Id,
+                            Abbreviation = StateRow.Abbreviation,
                             Name = StateRow.Name
 
                         };
@@ -125,19 +129,20 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static State LoadStateByName(string name)
+        public static State LoadStateByAbbreviation(string abb)
         {
             try
             {
                 using (FoodOrderSystemEntities dc = new FoodOrderSystemEntities())
                 {
-                    tblState StateRow = dc.tblStates.FirstOrDefault(a => a.Name == name);
+                    tblState StateRow = dc.tblStates.FirstOrDefault(a => a.Abbreviation == abb);
 
                     if (StateRow != null)
                     {
                         return new State
                         {
                             Id = StateRow.Id,
+                            Abbreviation = StateRow.Abbreviation,
                             Name = StateRow.Name
 
                         };
@@ -177,6 +182,7 @@ namespace FoodOrderSystem.BL
                         City = p.City,
                         StateId = p.StateId,
                         StateName = LoadStateById(p.StateId).Name,
+                        StateAbbreviation = LoadStateById(p.StateId).Abbreviation,
                         ZipCode = p.ZipCode
 
                     }));
@@ -208,6 +214,7 @@ namespace FoodOrderSystem.BL
                             City = row.City,
                             StateId = row.StateId,
                             StateName = LoadStateById(row.StateId).Name,
+                            StateAbbreviation = LoadStateById(row.StateId).Abbreviation,
                             ZipCode = row.ZipCode
                         };
                     }
@@ -233,7 +240,7 @@ namespace FoodOrderSystem.BL
                     tblUserAddress newrow = new tblUserAddress();
 
                     State newstate = new State();
-                    newstate.Id = LoadStateByName(userAddress.StateName).Id;    // This is so the user will only need to enter WI.
+                    newstate.Id = LoadStateByAbbreviation(userAddress.StateAbbreviation).Id;    // This is so the user will only need to enter WI.
                     
                     // Set the properties
                     newrow.Id = Guid.NewGuid();
@@ -256,7 +263,7 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static bool Insert(Guid userid, string address, string city, string stateName, string zipcode)
+        public static bool Insert(Guid userid, string address, string city, string stateAbbreviation, string zipcode)
         {
             try
             {
@@ -266,7 +273,7 @@ namespace FoodOrderSystem.BL
                     tblUserAddress newrow = new tblUserAddress();
 
                     State newstate = new State();
-                    newstate.Id = LoadStateByName(stateName).Id;    // This is so the user will only need to enter WI.
+                    newstate.Id = LoadStateByAbbreviation(stateAbbreviation).Id;    // This is so the user will only need to enter WI.
 
                     // Set the properties
                     newrow.Id = Guid.NewGuid();
@@ -290,7 +297,7 @@ namespace FoodOrderSystem.BL
             }
         }
 
-        public static int Update(Guid id, Guid userid, string address, string city, string stateName, string zipcode)
+        public static int Update(Guid id, Guid userid, string address, string city, string stateAbbreviation, string zipcode)
         {
             try
             {
@@ -303,7 +310,7 @@ namespace FoodOrderSystem.BL
                     if (updatedrow != null)
                     {
                         State newstate = new State();
-                        newstate.Id = LoadStateByName(stateName).Id;    // This is so the user will only need to enter WI.
+                        newstate.Id = LoadStateByAbbreviation(stateAbbreviation).Id;    // This is so the user will only need to enter WI.
 
                         updatedrow.UserId = userid;
                         updatedrow.Address = address;
@@ -337,7 +344,7 @@ namespace FoodOrderSystem.BL
                     if (updatedrow != null)
                     {
                         State newstate = new State();
-                        newstate.Id = LoadStateByName(userAddress.StateName).Id;    // This is so the user will only need to enter WI.
+                        newstate.Id = LoadStateByAbbreviation(userAddress.StateAbbreviation).Id;    // This is so the user will only need to enter WI.
 
                         updatedrow.UserId = userAddress.UserId;
                         updatedrow.Address = userAddress.Address;
