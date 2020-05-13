@@ -136,7 +136,7 @@ namespace FoodOrderSystem.WPF
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
             user.Phone = txtPhone.Text;
-            user.Password = txtPhone.Text;
+            user.Password = txtPassword.Password;
 
             int result = UserManager.Update(user);
 
